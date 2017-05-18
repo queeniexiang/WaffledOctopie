@@ -1,1 +1,15 @@
-Plan!! 
+5/18/2017:
+
+1. Understand Processing!! 
+
+1.5 Make superclass Character 
+
+2. Make Player class 
+
+3. Make movement of Player (According to vectors) 
+
+4. Make the circle 
+
+5. Make enemy class 
+
+6. Make movement of Enemy (According to vectors) 

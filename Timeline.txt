@@ -1,0 +1,39 @@
+1.
+Make character and circle
+
+2.
+Make person move along only circle
+
+3.
+Allow person to move into circle
+
+4.
+Make one type of enemy
+
+5.
+Popping in and out of circle
+
+6.
+Stopping game when enemy comes in contact with player
+
+7.
+Having one upgrade
+
+8.
+Having the ability to store upgrades
+
+9.
+Having more than one type of enemy
+
+10.
+Incorporate more upgrades
+
+11.
+Sacrifice score for more upgrades
+
+12.
+Generate maze
+
+
+
+
