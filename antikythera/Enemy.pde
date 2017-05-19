@@ -15,16 +15,6 @@ class Enemy extends Character {
     priority = inputPriority;
   }
   
-  public void drawCharacter() {
-    rect(posX, posY, len, wid);
-    if (priority == 0) {
-      updateCoordinates(); 
-    }
-    
-    if (priority == 1) {
-      updateCoordinatesDiag();
-    }
-  }
   
   public void updateCoordinatesDiag() {
   }
