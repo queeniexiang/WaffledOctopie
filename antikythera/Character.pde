@@ -2,14 +2,13 @@ class Character {
 
   float posX, posY, radius;
   int size;
-  int theta; 
-  float scaleX = width / 2;
-  float scaleY = height / 2;   
+  int angle; //angle measure
+  
 
 
   //default constructor 
   public Character() {
-    posX = posY = radius = theta = 0;
+    posX = posY = radius = angle = 0;
   }
 
   //overload constructor
@@ -18,19 +17,32 @@ class Character {
     this.posY = posY;
     this.radius = radius; 
     this.size = size; 
-    this.theta = 0;
+    angle = 0;
   }
 
   public void drawCharacter() {
     ellipse(posX, posY, size, size);
-    //System.out.println(posX);
-    //System.out.println(posY); 
     updateCoordinates();
   }
 
   public void updateCoordinates() {
-    theta = (theta + 5) % 360; 
-    posX = radius * cos(radians(theta)) + scaleX;  
-    posY = radius * sin(radians(theta)) + scaleY; 
+    angle = (angle + 2) % 360; //changing 2 will change the speed in which the character moves around the circle 
+    posX = radius * cos(radians(angle)) + width/2;  //width/2 centers the x cor of character
+    posY = radius * sin(radians(angle)) + height/2; //height/2 centers the y cor of character
   }
-}
+  
+  // ------------------- acessors -----------------------
+  public float getRadius() {
+   return radius;  
+  }
+  
+  public int getSize() {
+   return size;  
+  }
+  
+  public int getAngle() {
+     return angle;  
+  }
+  //------------------ end of mutators -------------------
+  
+} //end of class 
