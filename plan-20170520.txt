@@ -1,0 +1,9 @@
+1. take input for switching
+
+2. Finish switching
+
+3. Spawn default enemies
+
+4. Coloring of characters
+
+5. Determining of character size 
