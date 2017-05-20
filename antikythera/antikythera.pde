@@ -12,7 +12,7 @@ void setup() {
 
 void draw() {
   background(0);
-  frameRate(10);
+  //frameRate(10);
   drawCircle(); 
   player.drawCharacter(); 
   //enemy.drawCharacter();
@@ -26,4 +26,9 @@ void drawCircle() {
   fill(0); //makes inner circle black. Appears concentric
   ellipse(width/2, height/2, r - 2 * player.getSize() - circleSize, r - 2 * player.getSize() - circleSize); // draws inner circle... 15 is an arbitrary number used for appearance sake
   fill(255); //resets filling to be white
+}
+
+void keyPressed() {
+  if (key == ' ') 
+    player.switchSides(); 
 }

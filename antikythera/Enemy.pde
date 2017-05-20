@@ -3,13 +3,13 @@ class Enemy extends Character {
   int priority; 
   
   public Enemy() {
-    super(width/2, height/2, 250, 100); 
+    super(width/2, height/2, 250, 100, true); 
     len = wid = 40;
     priority = 0; 
   }
   
   public Enemy(float inputX, float inputY, int size, int inputLen, int inputWid, int inputPriority) {
-    super(inputX, inputY, inputWid/2, size); 
+    super(inputX, inputY, inputWid/2, size, true); 
     len = inputLen * size;
     wid = inputWid * size;
     priority = inputPriority;
