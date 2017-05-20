@@ -1,29 +1,24 @@
 class Enemy extends Character {
-  int len, wid; 
   int priority; 
   
   public Enemy() {
-    super(width/2, height/2, 250, 100, true); 
-    len = wid = 40;
+    super(width/2, height/2, 200, 20, 30, true); 
     priority = 0; 
   }
   
-  public Enemy(float inputX, float inputY, int size, int inputLen, int inputWid, int inputPriority) {
-    super(inputX, inputY, inputWid/2, size, true); 
-    len = inputLen * size;
-    wid = inputWid * size;
+  public Enemy(float centerX, float centerY, int size, int inputPriority) {
+    super(centerX, centerY, size, 20, 30, true); 
     priority = inputPriority;
   }
   
+  public void drawCharacter() {
+    fill(180, 0, 0); //makes circle maroon
+    super.drawCharacter();
+    fill(255); //resets fill color to white
+  }
   
   public void updateCoordinatesDiag() {
   }
     
-  
-  public int getWid() {
-    return wid;
-  }
-  
-  
-      
+        
 }

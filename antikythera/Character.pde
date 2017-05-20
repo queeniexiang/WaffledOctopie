@@ -13,18 +13,20 @@ class Character {
   }
 
   //overload constructor
-  public Character (float posX, float posY, float radius, int size, boolean out) {
+  public Character (float posX, float posY, float radius, int size, int angle, boolean out) {
     this.posX = posX;
     this.posY = posY;
     this.radius = radius; 
     this.size = size; 
     this.out = out; 
-    angle = 0;
+    this.angle = angle;
   }
 
   public void drawCharacter() {
+    noStroke();
     ellipse(posX, posY, size, size);
     updateCoordinates();
+    stroke(10); //resets stroke
   }
 
   public void updateCoordinates() {
@@ -54,6 +56,6 @@ class Character {
   public int getAngle() {
      return angle;  
   }
-  //------------------ end of mutators -------------------
+  //------------------ end of accessors -------------------
   
 } //end of class 
