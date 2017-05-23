@@ -1,1 +1,51 @@
-Hello 
+WaffledOctopie 
+Queenie Xiang
+Terry Guan 
+Fabiola Rasdosav
+APCS2 PD3 
+=========================================
+*Antikythera Development Log* 
+
+
+2017-05-18 
+—————————————————————————————————————————
+Queenie:
+1. Created and wrote the Enemy class file 
+2. Contributed to idea of using polar coordinates
+3. Figured out how to translate images and objects created to the center of the screen
+4. Added a moving enemy 
+
+Terry:
+1. Created and wrote the Character and Player class files 
+2. 
+
+
+
+2017-05-19
+—————————————————————————————————————————
+
+
+
+2017-05-20
+—————————————————————————————————————————
+Terry:
+1. Updated plan 
+2. Added colors and enemies 
+
+2017-05-21
+—————————————————————————————————————————
+
+
+2017-05-22 
+—————————————————————————————————————————
+Terry:
+1. Worked in class to flesh out and clarify the proposal 
+
+Queenie:
+1. Updated proposal with more specific details and cleared up the vague sections 
+2. Created and updated plan 2017-05-23
+
+Fabiola:
+1. Linked submodule 
+2. Worked in class to flesh out and clarify the proposal 
+
