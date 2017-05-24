@@ -1,9 +1,9 @@
 class Character {
 
-  float posX, posY, radius;
-  int size;
-  int angle; //angle measure
-  boolean out;   
+  protected float posX, posY, radius;
+  protected int size;
+  protected int angle; //angle measure
+  protected boolean out;   
 
 
   //default constructor 

@@ -1,5 +1,5 @@
 class Enemy extends Character {
-  int priority; 
+  protected int priority; 
   
   public Enemy() {
     super(width/2, height/2, 200, 20, 30, true); 
