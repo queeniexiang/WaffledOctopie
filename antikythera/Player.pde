@@ -9,5 +9,4 @@ class Player extends Character {
     super.drawCharacter(); 
     fill(255);
   }
-  
 }

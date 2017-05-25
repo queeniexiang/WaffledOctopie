@@ -1,6 +1,7 @@
 Player player;
 Enemy enemy; 
-EnemyOne enemy2; 
+EnemyOne enemy2;
+EnemyTwo enemy3; 
 int circleSize; 
 
 void setup() {
@@ -10,15 +11,19 @@ void setup() {
   player = new Player();
   enemy = new Enemy();
   enemy2 = new EnemyOne(); 
+  enemy2.determineSide(); 
+  enemy3 = new EnemyTwo();
+  
 }
 
 void draw() {
   background(0);
-  //frameRate(10);
+  frameRate(10);
   drawCircle(); 
   player.drawCharacter(); 
   enemy.drawCharacter();
   enemy2.drawCharacter(); 
+  enemy3.drawCharacter(); 
 }
 
 //draws two circles. There is an outer circle that represents the outer edge circle and an inner

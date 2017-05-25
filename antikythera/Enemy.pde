@@ -6,8 +6,9 @@ class Enemy extends Character {
     priority = 0; 
   }
   
-  public Enemy(float centerX, float centerY, int size, int inputPriority) {
-    super(centerX, centerY, size, 20, 30, true); 
+  public Enemy(float centerX, float centerY, float radius, int size, int angle, 
+  boolean out, int inputPriority) {
+    super(centerX, centerY, 200, size, angle, out); 
     priority = inputPriority;
   }
   
