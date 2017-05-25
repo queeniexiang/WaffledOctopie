@@ -3,19 +3,19 @@ class EnemyTwo extends Enemy {
     super(); 
   }
   
-  public EnemyTwo(float centerX, float centerY, int inputPriority) {
+  public EnemyTwo(int inputPriority) {
     super((width*-1), height, 200, 20, 0, true, inputPriority);
   }
   
   public void drawCharacter() {
-    System.out.println(posX);
-    System.out.println(posY); 
-    posX -= 10; 
-    posY -= 10; 
+    //System.out.println(posX);
+    //System.out.println(posY);  
     fill (134, 30, 90);
-    System.out.println(posX);
-    System.out.println(posY); 
+    //System.out.println(posX);
+    //System.out.println(posY); 
     ellipse(posX, posY, size, size); 
+    posX -= 10; 
+    posY -= 10;
   }
 }
   

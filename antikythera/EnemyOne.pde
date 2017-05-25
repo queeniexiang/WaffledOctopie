@@ -26,26 +26,32 @@ class EnemyOne extends Enemy {
   } */ 
   
   public void determineSide() {
+    int selector = (int)random(0,5); 
     if ( (int)(random (0, 2)) == 0) {
       //System.out.println("0"); 
       out = true;
       switchSides(); 
       //System.out.println(radius);
     }
-    posX = radius * cos(radians(angle)) + width/2;  //width/2 centers the x cor of character
-    posY = radius * sin(radians(angle)) + height/2; //height/2 centers the y cor of character
-    
-    if ( (int(random (0,2) ) == 1)) {
-       float temp = posX; 
-       posX = posY * -1 ; 
-       posY = temp; 
-      
+    if (selector == 0) {
+      angle = 0;
     }
     
-    System.out.println(posX);
-    System.out.println(posY); 
-      
-}
+    if (selector == 1) {
+      angle = 90; 
+    }
+    
+    if (selector == 2) {
+      angle = 180;
+    }
+    
+    if (selector == 3) {
+      angle = 270;
+    } 
+    
+    posX = radius * cos(radians(angle)) + width/2;  //width/2 centers the x cor of character
+    posY = radius * sin(radians(angle)) + height/2; //height/2 centers the y cor of character
+  }
   
     
 
