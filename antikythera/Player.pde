@@ -9,5 +9,12 @@ class Player extends Character {
     super.drawCharacter(); 
     fill(255);
   }
-  
+
+  public boolean touching(Enemy other) {
+    float distance = dist(posX, posY, other.posX, other.posY) - size/2 - other.size/2; //calculates distance betw 2 circles
+    if (distance <= 0 && radius == other.getRadius())
+      return true;
+    else 
+    return false;
+  }
 }
