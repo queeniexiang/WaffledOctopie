@@ -15,7 +15,7 @@ void setup() {
   player = new Player();
   enemy = new Enemy(); 
   enemy1 = new EnemyOne();
-  enemy2 = new EnemyTwo();
+  enemy2 = new EnemyTwo(2);
 }
 
 void draw() {
