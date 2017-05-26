@@ -14,8 +14,8 @@ class EnemyTwo extends Enemy {
     //System.out.println(posX);
     //System.out.println(posY); 
     ellipse(posX, posY, size, size); 
-    posX -= 10; 
-    posY -= 10;
+    posX -= 3; 
+    posY -= 3;
   }
 }
   

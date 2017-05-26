@@ -15,7 +15,7 @@ void setup() {
   player = new Player();
   enemy = new Enemy(); 
   enemy1 = new EnemyOne();
-  //enemy2 = new EnemyTwo();
+  enemy2 = new EnemyTwo();
 }
 
 void draw() {
@@ -29,7 +29,7 @@ void draw() {
     stroke(255);
     //line(enemy1.getPosX(), enemy1.getPosY(), player.getPosX(), player.getPosY());
     stroke(0);
-    //enemy3.drawCharacter(); 
+    enemy2.drawCharacter(); 
     if (player.touching((Enemy) enemy1))
       continueGame = false;
   } 
