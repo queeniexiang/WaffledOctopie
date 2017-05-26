@@ -1,21 +1,21 @@
 Player player;
 Enemy enemy; 
-EnemyOne enemy2;
-EnemyTwo enemy3; 
+EnemyOne enemy1;
+EnemyTwo enemy2; 
 
 boolean continueGame; 
 int circleSize; 
 
 void setup() {
   background(0); 
+  //fullScreen();
   size(600, 600);
   continueGame = true; 
   circleSize = 15; 
   player = new Player();
   enemy = new Enemy(); 
-  enemy2 = new EnemyOne();
-  enemy2.determineSide(); 
-  enemy3 = new EnemyTwo();
+  enemy1 = new EnemyOne();
+  //enemy2 = new EnemyTwo();
 }
 
 void draw() {
@@ -25,9 +25,12 @@ void draw() {
     drawCircle(); 
     player.drawCharacter(); 
     enemy.drawCharacter();
-    enemy2.drawCharacter(); 
-    enemy3.drawCharacter(); 
-    if (player.touching(enemy2))
+    enemy1.drawCharacter();
+    stroke(255);
+    //line(enemy1.getPosX(), enemy1.getPosY(), player.getPosX(), player.getPosY());
+    stroke(0);
+    //enemy3.drawCharacter(); 
+    if (player.touching((Enemy) enemy1))
       continueGame = false;
   } 
   else {

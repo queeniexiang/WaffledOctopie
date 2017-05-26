@@ -1,24 +1,23 @@
-WaffledOctopie 
+WaffledOctopie
 Queenie Xiang
-Terry Guan 
+Terry Guan
 Fabiola Rasdosav
-APCS2 PD3 
+APCS2 PD3
 =========================================
-*Antikythera Development Log* 
+*Antikythera Development Log*
 
 
-2017-05-18 
+2017-05-18
 —————————————————————————————————————————
 Queenie:
-1. Created and wrote the Enemy class file 
+1. Created and wrote the Enemy class file
 2. Contributed to idea of using polar coordinates
 3. Figured out how to translate images and objects created to the center of the screen
-4. Added a moving enemy 
+4. Added a moving enemy
 
 Terry:
-1. Created and wrote the Character and Player class files 
-2. 
-
+1. Created and wrote the Character
+2. Wrote subclass Player
 
 
 2017-05-19
@@ -29,23 +28,30 @@ Terry:
 2017-05-20
 —————————————————————————————————————————
 Terry:
-1. Updated plan 
-2. Added colors and enemies 
+1. Updated plan
+2. Added colors and enemies
+3. Updated the enemy class to be encircling the path
+4. made keyPressed method so that whenever player hits space bar player
+changes sides
 
 2017-05-21
 —————————————————————————————————————————
 
 
-2017-05-22 
+2017-05-22
 —————————————————————————————————————————
 Terry:
-1. Worked in class to flesh out and clarify the proposal 
+1. Worked in class to flesh out and clarify the proposal
 
 Queenie:
-1. Updated proposal with more specific details and cleared up the vague sections 
+1. Updated proposal with more specific details and cleared up the vague sections
 2. Created and updated plan 2017-05-23
 
 Fabiola:
-1. Linked submodule 
-2. Worked in class to flesh out and clarify the proposal 
+1. Linked submodule
+2. Worked in class to flesh out and clarify the proposal
 
+2017-05-25
+—————————————————————————————————————————
+Terry:
+1. Added player and enemy detection
