@@ -1,7 +1,7 @@
 class EnemyOne extends Enemy {
 
   public EnemyOne() {
-    super(width/2, height/2, 200, 20, (int) random(0, 360), true, 10);
+    super(width/2, height/2, 200, 20, (int) random(0, 360), true, color(134, 30, 90), 10);
     if (random(10) < 5) {
       out = true;
     }
@@ -63,7 +63,7 @@ class EnemyOne extends Enemy {
    
    */
   public void drawCharacter() {
-    fill(134, 30, 90); 
+    fill(myColor); 
     ellipse(posX, posY, size, size);
   }
 }    

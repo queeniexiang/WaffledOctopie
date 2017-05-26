@@ -4,29 +4,33 @@ class Character {
   protected int size;
   protected int angle; //angle measure
   protected boolean out;   
-
+  protected color myColor; 
 
   //default constructor 
   public Character() {
+    myColor = color(0, 0, 0); //black color
     posX = posY = radius = angle = 0;
     out = true; 
   }
 
   //overload constructor
-  public Character (float posX, float posY, float radius, int size, int angle, boolean out) {
+  public Character (float posX, float posY, float radius, int size, int angle, boolean out, color myColor) {
     this.posX = posX;
     this.posY = posY;
     this.radius = radius; 
     this.size = size; 
     this.out = out; 
     this.angle = angle;
+    this.myColor = myColor; 
   }
 
   public void drawCharacter() {
+    fill(myColor); 
     noStroke();
     ellipse(posX, posY, size, size);
     updateCoordinates();
     stroke(10); //resets stroke
+    fill(0); //default color of black
   }
 
   public void updateCoordinates() {

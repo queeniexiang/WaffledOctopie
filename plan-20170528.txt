@@ -1,0 +1,2 @@
+1. Create upgrades class
+2. Create stack for upgrades
