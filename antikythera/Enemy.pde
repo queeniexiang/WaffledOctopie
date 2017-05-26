@@ -27,4 +27,8 @@ class Enemy extends Character {
     posX = width/2 + radius * cos(radians(angle));  //width/2 centers the x cor of character
     posY = height/2 + radius * sin(radians(angle)); //height/2 centers the y cor of character
   }
+  
+  public int getPriority() {
+    return priority;
+  } 
 }

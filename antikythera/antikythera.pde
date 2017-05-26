@@ -2,6 +2,7 @@ Player player;
 Enemy enemy; 
 EnemyOne enemy1;
 EnemyTwo enemy2; 
+ALHeap enemyContainer;  
 
 boolean continueGame; 
 int circleSize; 

@@ -68,6 +68,7 @@ class Character {
   public int getAngle() {
      return angle;  
   }
+  
   //------------------ end of accessors -------------------
   
   public int setAngle(int newAngle) {
