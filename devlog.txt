@@ -4,6 +4,7 @@ Terry Guan
 Fabiola Rasdosav
 APCS2 PD3
 =========================================
+
 *Antikythera Development Log*
 
 
@@ -11,13 +12,14 @@ APCS2 PD3
 —————————————————————————————————————————
 Queenie:
 1. Created and wrote the Enemy class file
-2. Contributed to idea of using polar coordinates
+2. After a heated argument, decided to go alone with Terry’s idea of using (rcos(theta), rsin(theta)) polar coordinates for the movement of one type of enemy and the player instead of the fraction equation. 
 3. Figured out how to translate images and objects created to the center of the screen
 4. Added a moving enemy
 
 Terry:
 1. Created and wrote the Character
 2. Wrote subclass Player
+3. Decided with Queenie to use polar coordinates of (rcos(theta), rsin(theta)) to represent movements of one type of enemy and the player 
 
 
 2017-05-19
@@ -31,7 +33,7 @@ Terry:
 1. Updated plan
 2. Added colors and enemies
 3. Updated the enemy class to be encircling the path
-4. made keyPressed method so that whenever player hits space bar player
+4. Made keyPressed method so that whenever player hits space bar player
 changes sides
 
 2017-05-21
@@ -51,7 +53,23 @@ Fabiola:
 1. Linked submodule
 2. Worked in class to flesh out and clarify the proposal
 
+
+2017-05-24
+—————————————————————————————————————————
+Terry:
+1. Robustified Queenie’s code of placing a stationary enemy 
+2. Allowed for the stationary enemy to be positioned anywhere on/in the circle 
+
+Queenie:
+1. Added a stationary enemy that has a 50% chance of being spawned on the outer edge of the circle, and 50% chance of being spawned on the inner edge. 
+2. Originally created the code that only allowed the enemy to be stationed at one of the 0, 90, 180, and 270 positions. 
+
+
 2017-05-25
 —————————————————————————————————————————
 Terry:
-1. Added player and enemy detection
+1. Added player and enemy detection —- but works only for the stationary enemies so far. 
+2. Altered the direction of the moving enemy so that it circles the opposite direction of the Player’s movement. 
+
+Queenie:
+1. Added a new type of enemy that moves diagonally from one corner of the screen to the other. 
