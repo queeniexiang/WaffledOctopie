@@ -1,7 +1,8 @@
 Player player;
 Enemy enemy; 
 EnemyOne enemy1;
-EnemyTwo enemy2; 
+EnemyTwo enemy2;
+PriorityQueue enemyContainer; 
 boolean continueGame; 
 int circleSize, currentScore, highScore; 
 
@@ -13,9 +14,7 @@ void setup() {
   circleSize = 15; 
   currentScore = highScore = 0; 
   player = new Player();
-  enemy = new Enemy(); 
-  enemy1 = new EnemyOne();
-  enemy2 = new EnemyTwo(2);
+  enemyContainer = new PriorityQueue();
 }
 
 void draw() {
@@ -26,14 +25,13 @@ void draw() {
     currentScore += (int) (10/6); //equal to 1 point per millisecond
     textSize(30); 
     text(currentScore, width/2 - 25, height/2 + 15);    
-    player.drawCharacter(); 
-    enemy.drawCharacter();
-    enemy1.drawCharacter();
+    player.drawCharacter();
+    addEnemy(); //will only add enemy every 5 seconds
+    drawEnemies(); 
     stroke(255);
     //line(enemy1.getPosX(), enemy1.getPosY(), player.getPosX(), player.getPosY());
     stroke(0);
-    enemy2.drawCharacter(); 
-    if (player.touching((Enemy) enemy1))
+    if (isDead())
       continueGame = false;
   } else {
     background(0);
@@ -63,4 +61,31 @@ void drawCircle() {
 void keyPressed() {
   if (key == ' ') 
     player.switchSides();
+}
+
+//every 10 seconds add an enemy . The new enemy is decided randomly
+void addEnemy() {
+  if (second()%5 == 0 && frameCount%60 == 0) {  //checks to see if 5 seconds passed and that if it is 1 frame within in the 60 fps
+    float dec = random(100);
+    Enemy adder; 
+    if (dec > 50)
+      adder = new EnemyOne(); 
+    else 
+    adder = new Enemy(); 
+    enemyContainer.add(adder);
+  }
+}
+
+void drawEnemies() {
+  for (int i = 0; i < enemyContainer.size(); i++) {
+    enemyContainer.get(i).drawCharacter();
+  }
+}
+
+boolean isDead() {
+  for (int i = 0; i < enemyContainer.size(); i++) {
+    if (player.touching(enemyContainer.get(i)))
+      return true;
+  }
+  return false;
 }

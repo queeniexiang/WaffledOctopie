@@ -7,8 +7,8 @@ public class Upgrades {
   
   public Upgrades() {
     cost = 0;
-    item
-  
+    //item
+  }
   
   
 }

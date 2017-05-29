@@ -32,17 +32,4 @@ class Enemy extends Character {
     return priority;
   } 
   
-  private int compareTo(Enemy enemy) {
-    if (this.priority > enemy.getPriority()) {
-      return 1;
-    }
-    
-    else if (this.priority == enemy.getPriority()) {
-      return 0;
-    }
-    
-    else {
-      return -1;
-    }
-  }
 }
