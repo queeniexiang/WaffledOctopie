@@ -1,25 +1,25 @@
 import java.util.LinkedList;
 
-public class LLStack<T> implements Stack<T> 
+public class LLStack<T> implements Stack<Upgrades> 
 {
-  private LinkedList<T> _stack;
+  private LinkedList<Upgrades> _stack;
 
   //constructor
   public LLStack() 
   {   
-    _stack = new LinkedList<T>();
+    _stack = new LinkedList<Upgrades>();
   }
 
 
   //means of insertion
-  public void push( T s ) 
+  public void push( Upgrades s ) 
   {
     _stack.addFirst(s);
   }
 
 
   //means of viewing top element without removing
-  public T peek( ) 
+  public Upgrades peek( ) 
   {
     if (_stack.isEmpty()) {
       return null;
@@ -30,7 +30,7 @@ public class LLStack<T> implements Stack<T>
 
 
   //means of removal
-  public T pop( )
+  public Upgrades pop( )
   {
     if (_stack.isEmpty()) {
       return null;
