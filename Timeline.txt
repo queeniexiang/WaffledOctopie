@@ -1,23 +1,23 @@
 1.
-Make character and circle
+Make character and circle //Done
 
 2.
-Make person move along only circle
+Make person move along only circle //Done
 
 3.
-Allow person to move into circle
+Allow person to move into circle //Done
 
 4.
-Make one type of enemy
+Make one type of enemy //Done
 
 5.
-Popping in and out of circle
+Popping in and out of circle //Done
 
 6.
-Stopping game when enemy comes in contact with player
+Stopping game when enemy comes in contact with player //Done
 
 7.
-Having one upgrade
+Having one upgrade //Done
 
 8.
 Having the ability to store upgrades
@@ -33,7 +33,3 @@ Sacrifice score for more upgrades
 
 12.
 Generate maze
-
-
-
-
