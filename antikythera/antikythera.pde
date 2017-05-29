@@ -76,13 +76,13 @@ void addEnemy() {
   }
 }
 
-void drawEnemies() {
+void drawEnemies() { //draws all enemies in the priorityQueue
   for (int i = 0; i < enemyContainer.size(); i++) {
     enemyContainer.get(i).drawCharacter();
   }
 }
 
-boolean isDead() {
+boolean isDead() { //checks if the player is touching any enemies at all
   for (int i = 0; i < enemyContainer.size(); i++) {
     if (player.touching(enemyContainer.get(i)))
       return true;
