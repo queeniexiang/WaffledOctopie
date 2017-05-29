@@ -2,10 +2,8 @@ Player player;
 Enemy enemy; 
 EnemyOne enemy1;
 EnemyTwo enemy2; 
-ALHeap enemyContainer;  
-
 boolean continueGame; 
-int circleSize; 
+int circleSize, currentScore, highScore; 
 
 void setup() {
   background(0); 
@@ -13,6 +11,7 @@ void setup() {
   size(600, 600);
   continueGame = true; 
   circleSize = 15; 
+  currentScore = highScore = 0; 
   player = new Player();
   enemy = new Enemy(); 
   enemy1 = new EnemyOne();
@@ -24,6 +23,9 @@ void draw() {
     background(0);
     //frameRate(10);
     drawCircle(); 
+    currentScore += (int) (10/6); //equal to 1 point per millisecond
+    textSize(30); 
+    text(currentScore, width/2 - 25, height/2 + 15);    
     player.drawCharacter(); 
     enemy.drawCharacter();
     enemy1.drawCharacter();
@@ -33,9 +35,16 @@ void draw() {
     enemy2.drawCharacter(); 
     if (player.touching((Enemy) enemy1))
       continueGame = false;
-  } 
-  else {
+  } else {
     background(0);
+    fill(255); 
+    textSize(50); 
+    text(currentScore, width/2 - 25, height/2 + 15); //prints final score
+    if (currentScore >= highScore) {
+       highScore = currentScore; 
+       textSize(20); 
+       text("Congratulations! You beat the highscore", width/2 - 150, height/2 - 40); 
+    }
   }
 }
 
