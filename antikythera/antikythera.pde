@@ -41,9 +41,9 @@ void draw() {
     textSize(50); 
     text(currentScore, width/2 - 25, height/2 + 15); //prints final score
     if (currentScore >= highScore) {
-       highScore = currentScore; 
-       textSize(20); 
-       text("Congratulations! You beat the highscore", width/2 - 150, height/2 - 40); 
+      highScore = currentScore; 
+      textSize(20); 
+      text("Congratulations! You beat the highscore", width/2 - 150, height/2 - 40);
     }
   }
 }
@@ -58,11 +58,6 @@ void drawCircle() {
   ellipse(width/2, height/2, r - 2 * player.getSize() - circleSize, r - 2 * player.getSize() - circleSize); // draws inner circle... 15 is an arbitrary number used for appearance sake
   fill(255); //resets filling to be white
 }
-
-//
-void checkDeath() {
-}
-
 
 //switches character's edge upon hitting space
 void keyPressed() {
