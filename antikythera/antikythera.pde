@@ -1,7 +1,7 @@
 Player player;
 PriorityQueue enemyContainer; 
 boolean continueGame; 
-int circleSize, currentScore, highScore; 
+int circleSize, currentScore, highScore, difficulty, difficulty2; //difficulty is a var for time in sec and difficulty2 is a var for time in millisec
 
 void setup() {
   background(0); 
@@ -12,6 +12,8 @@ void setup() {
   currentScore = highScore = 0; 
   player = new Player();
   enemyContainer = new PriorityQueue();
+  difficulty = 3; 
+  difficulty2 = 60;
 }
 
 void draw() {
@@ -72,9 +74,13 @@ void keyPressed() {
   }
 }
 
+//determines difficulty of game based on currentScore
+void determineDifficulty() {
+  
+}
 //every 10 seconds add an enemy . The new enemy is decided randomly
 void addEnemy() {
-  if (second()%1 == 0 && frameCount%60 == 0) {  //checks to see if 5 seconds passed and that if it is 1 frame within in the 60 fps
+  if (second()%difficulty == 0 && frameCount%difficulty2 == 0) {  //checks to see if x seconds passed and that if it is 1 frame within in the 60 fps
     float dec = random(100);
     Enemy adder; 
     if (dec > 50)
