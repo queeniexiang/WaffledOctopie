@@ -54,6 +54,10 @@ void drawCircle() {
   fill(255); //resets filling to be white
 }
 
+//fabs
+void drawUpgradeMenu() {
+  
+}
 //switches character's edge upon hitting space
 void keyPressed() {
   if (key == ' ') { 
