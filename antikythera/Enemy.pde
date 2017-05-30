@@ -2,8 +2,15 @@ class Enemy extends Character {
   protected int priority; 
 
   public Enemy() {
-    super(width/2, height/2, 200, 20, 30, true, color(180, 0, 0)); 
+    super(width/2, height/2, 200, 20, (int) random(0, 360), true, color(180, 0, 0)); 
     priority = 0;
+    if (random(10) < 5) {
+      out = true;
+    } else
+      out = false; 
+    super.switchSides();
+    posX = width/2 + radius * cos(radians(angle));
+    posY = height/2 + radius * sin(radians(angle));
   }
 
   public Enemy(float posX, float posY, float radius, int size, int angle, 
@@ -27,9 +34,8 @@ class Enemy extends Character {
     posX = width/2 + radius * cos(radians(angle));  //width/2 centers the x cor of character
     posY = height/2 + radius * sin(radians(angle)); //height/2 centers the y cor of character
   }
-  
+
   public int getPriority() {
     return priority;
-  } 
-  
+  }
 }

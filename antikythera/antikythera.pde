@@ -1,7 +1,4 @@
 Player player;
-Enemy enemy; 
-EnemyOne enemy1;
-EnemyTwo enemy2;
 PriorityQueue enemyContainer; 
 boolean continueGame; 
 int circleSize, currentScore, highScore; 
@@ -59,19 +56,27 @@ void drawCircle() {
 
 //switches character's edge upon hitting space
 void keyPressed() {
-  if (key == ' ') 
-    player.switchSides();
+  if (key == ' ') { 
+   if (continueGame)
+     player.switchSides();
+   else {
+     player = new Player(); 
+     currentScore = 0; 
+     enemyContainer = new PriorityQueue();      
+     continueGame = true;
+   }
+  }
 }
 
 //every 10 seconds add an enemy . The new enemy is decided randomly
 void addEnemy() {
-  if (second()%5 == 0 && frameCount%60 == 0) {  //checks to see if 5 seconds passed and that if it is 1 frame within in the 60 fps
+  if (second()%1 == 0 && frameCount%60 == 0) {  //checks to see if 5 seconds passed and that if it is 1 frame within in the 60 fps
     float dec = random(100);
     Enemy adder; 
     if (dec > 50)
       adder = new EnemyOne(); 
     else 
-    adder = new Enemy(); 
+      adder = new Enemy(); 
     enemyContainer.add(adder);
   }
 }
