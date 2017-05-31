@@ -27,4 +27,13 @@ The game also achieves the circle movement effect by using the angular velocity 
 
 
 ### Launch instructions
+0. If you don't have processing, go download processing 
+1. Go to your terminal or command prompt 
+2. Type in:
+````
+git clone git@github.com:queeniexiang/WaffledOctopie.git 
+cd WaffledOctopie
+cd Antikythera 
+processing Antikythera.pde 
+```` 
 Upon entering the introduction page, the player can choose to read the instructions or dive right into the game. The game will start after a few seconds of delay.After choosing to start the game the player will spawn on a random side of the circle and begin moving while enemies are randomly spawned along the outer and innder sides of the circle. 
