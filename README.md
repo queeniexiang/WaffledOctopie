@@ -33,7 +33,9 @@ The game also achieves the circle movement effect by using the angular velocity 
 ````
 git clone git@github.com:queeniexiang/WaffledOctopie.git 
 ````
+Now you've cloned the WaffledOctopie Repo! 
 
+Continue by typing in: 
 ````
 cd WaffledOctopie
 cd Antikythera 
