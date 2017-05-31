@@ -32,6 +32,9 @@ The game also achieves the circle movement effect by using the angular velocity 
 2. Type in:
 ````
 git clone git@github.com:queeniexiang/WaffledOctopie.git 
+````
+
+````
 cd WaffledOctopie
 cd Antikythera 
 processing Antikythera.pde 
