@@ -1,6 +1,7 @@
 Player player;
 PriorityQueue enemyContainer; 
 boolean continueGame; 
+boolean paused;
 int circleSize, currentScore, highScore, difficulty, difficulty2; //difficulty is a var for time in sec and difficulty2 is a var for time in millisec
 
 void setup() {
@@ -32,18 +33,22 @@ void draw() {
     stroke(0);
     if (isDead())
       continueGame = false;
+    if (paused)
+      background(0);
   } else {
-    background(0);
-    fill(255); 
-    textSize(50); 
-    text(currentScore, width/2 - 25, height/2 + 15); //prints final score
-    if (currentScore >= highScore) {
-      highScore = currentScore; 
-      textSize(20); 
-      text("Congratulations! You beat the highscore", width/2 - 150, height/2 - 40);
+      background(0);
+      fill(255); 
+      textSize(50); 
+      text(currentScore, width/2 - 25, height/2 + 15); //prints final score
+      if (currentScore >= highScore) {
+        highScore = currentScore; 
+        textSize(20); 
+        text("Congratulations! You beat the highscore", width/2 - 150, height/2 - 40);
+      }
+      
     }
   }
-}
+
 
 //draws two circles. There is an outer circle that represents the outer edge circle and an inner
 //circle that will help form the inner edge
@@ -72,6 +77,11 @@ void keyPressed() {
      continueGame = true;
    }
   }
+  if (key == 'p'){
+   paused = true;
+   drawUpgradeMenu(); 
+  }
+  
 }
 
 //determines difficulty of game based on currentScore
