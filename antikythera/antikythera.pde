@@ -34,7 +34,8 @@ void draw() {
     if (isDead())
       continueGame = false;
     if (paused)
-      background(0);
+      background(10);
+      drawUpgradeMenu();
   } else {
       background(0);
       fill(255); 
@@ -62,9 +63,41 @@ void drawCircle() {
 }
 
 //fabs
+/*
 void drawUpgradeMenu() {
+  fill(255);
   
+  
+//double points
+  fill(255);
+  rect(20,height/2,150,100);
+  textSize(15);
+  fill(0);
+  text("Double Points", width/12 + 1,height/2 + 60);
+//description  
+  textSize(5);
+  fill(0);
+  text("earn double points for a limitted amount of time",width/12,height/2 + 80);
+//slow down    
+  fill(255);
+  rect(220,height/2,150,100);
+  textSize(15);
+  fill(0);
+  text("Slow Down", 263 ,height/2 + 60);
+  textSize(5);
+  fill(0);
+  text("slow down enemies",250,height/2 + 60);
+//tbd
+  fill(255);
+  rect(420,height/2,150,100);
+  textSize(15);
+  fill(0);
+  text("TBD", 463,height/2 + 60);
+  textSize(5);
+  fill(0);
+  text("tbd",width/12,height/2 + 80);
 }
+*/
 //switches character's edge upon hitting space
 void keyPressed() {
   if (key == ' ') { 
@@ -78,8 +111,7 @@ void keyPressed() {
    }
   }
   if (key == 'p'){
-   paused = true;
-   drawUpgradeMenu(); 
+   paused = true; 
   }
   
 }
