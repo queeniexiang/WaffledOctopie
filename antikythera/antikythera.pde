@@ -8,7 +8,8 @@ void setup() {
   background(0); 
   //fullScreen();
   size(600, 600);
-  continueGame = true; 
+  continueGame = true;
+  paused = false; 
   circleSize = 15; 
   currentScore = highScore = 0; 
   player = new Player();
@@ -31,12 +32,16 @@ void draw() {
     stroke(255);
     //line(enemy1.getPosX(), enemy1.getPosY(), player.getPosX(), player.getPosY());
     stroke(0);
-    if (isDead())
+    if (isDead() || paused)
       continueGame = false;
-    if (paused)
-      background(10);
-      drawUpgradeMenu();
-  } else {
+  }
+  else if (paused && !continueGame) {
+    background(0); 
+    drawUpgradeMenu(); 
+  }
+  else if (!paused && !isDead())
+    continueGame = true;
+  else {
       background(0);
       fill(255); 
       textSize(50); 
@@ -63,7 +68,6 @@ void drawCircle() {
 }
 
 //fabs
-/*
 void drawUpgradeMenu() {
   fill(255);
   
@@ -73,31 +77,32 @@ void drawUpgradeMenu() {
   rect(20,height/2,150,100);
   textSize(15);
   fill(0);
-  text("Double Points", width/12 + 1,height/2 + 60);
+  text("Double Points", width/12 - 5,height/2 + 40);
 //description  
-  textSize(5);
+  textSize(12);
   fill(0);
-  text("earn double points for a limitted amount of time",width/12,height/2 + 80);
+  text("earn double points for a",width/12 - 25,height/2 + 80);
+  text(" limitted amount of time",width/12 - 25,height/2 + 95);
 //slow down    
   fill(255);
   rect(220,height/2,150,100);
   textSize(15);
   fill(0);
-  text("Slow Down", 263 ,height/2 + 60);
-  textSize(5);
+  text("Slow Down", 260 ,height/2 + 40);
+  textSize(12);
   fill(0);
-  text("slow down enemies",250,height/2 + 60);
+  text("slow down enemies",240,height/2 + 80);
 //tbd
   fill(255);
   rect(420,height/2,150,100);
   textSize(15);
   fill(0);
-  text("TBD", 463,height/2 + 60);
-  textSize(5);
+  text("TBD", 470,height/2 + 40);
+  textSize(12);
   fill(0);
-  text("tbd",width/12,height/2 + 80);
+  text("tbd",475,height/2 + 80);
 }
-*/
+
 //switches character's edge upon hitting space
 void keyPressed() {
   if (key == ' ') { 
@@ -111,7 +116,7 @@ void keyPressed() {
    }
   }
   if (key == 'p'){
-   paused = true; 
+   paused = !paused; 
   }
   
 }
