@@ -126,7 +126,8 @@ void keyPressed() {
     }
   }
   if (key == 'p') {
-    paused = !paused;
+    if (currentScore >= 300)
+      paused = !paused;
     //if (paused) {
     //  if (key == 'q')
     //  if (key == 'w')
