@@ -72,37 +72,40 @@ void drawCircle() {
 //fabs
 void drawUpgradeMenu() {
   fill(255);
-  
-  
+  textSize(50);
+  text("Paused",width/2 - 100,height/2 - 200);
+  fill(255);
+  textSize(25);
+  text("Choose an upgrade for a certain amount of points or press P to return to game", width/6 - 50,height/2 - 100);
 //double points
   fill(255);
-  rect(20,height/2,150,100);
-  textSize(15);
+  rect(width/8,height/2,250,200);
+  textSize(30);
   fill(0);
-  text("Double Points", width/12 - 5,height/2 + 40);
+  text("Double Points", width/8 + 25,height/2 + 40);
 //description  
-  textSize(12);
+  textSize(20);
   fill(0);
-  text("earn double points for a",width/12 - 25,height/2 + 80);
-  text(" limitted amount of time",width/12 - 25,height/2 + 95);
+  text("earn double points for a",width/8 + 5,height/2 + 145);
+  text("limitted amount of time",width/8 + 7,height/2 + 180);
 //slow down    
   fill(255);
-  rect(220,height/2,150,100);
-  textSize(15);
+  rect(width/2 - 135,height/2,250,200);
+  textSize(30);
   fill(0);
-  text("Slow Down", 260 ,height/2 + 40);
-  textSize(12);
+  text("Slow Down", width/2 - 90 ,height/2 + 40);
+  textSize(20);
   fill(0);
-  text("slow down enemies",240,height/2 + 80);
+  text("slow down enemies",width/2 - 100,height/2 + 165);
 //tbd
   fill(255);
-  rect(420,height/2,150,100);
-  textSize(15);
+  rect(5*(width/8) + 55,height/2,250,200);
+  textSize(30);
   fill(0);
-  text("TBD", 470,height/2 + 40);
-  textSize(12);
+  text("TBD", 5*(width/8) + 50,height/2 + 40);
+  textSize(20);
   fill(0);
-  text("tbd",475,height/2 + 80);
+  text("tbd",5*(width/8) + 50,height/2 + 80);
 }
 
 //switches character's edge upon hitting space
