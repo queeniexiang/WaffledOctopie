@@ -5,7 +5,7 @@ class Enemy extends Character {
   protected boolean shouldFlickr; 
   
   public Enemy() {
-    super(width/2, height/2, 200, 20, (int) random(0, 360), true, color(180, 0, 0)); 
+    super(width/2, height/2, 450, 40, (int) random(0, 360), true, color(180, 0, 0)); 
     priority = 0;
     bornTime = second()%60;
     timeExisted = 0;
@@ -21,7 +21,7 @@ class Enemy extends Character {
 
   public Enemy(float posX, float posY, float radius, int size, int angle, 
     boolean out, color myColor, int inputPriority) {
-    super(posX, posY, 200, size, angle, out, myColor); 
+    super(posX, posY, 450, size, angle, out, myColor); 
     shouldFlickr = true; 
     bornTime = second()%60;
     timeExisted = 0;

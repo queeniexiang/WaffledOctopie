@@ -6,8 +6,8 @@ int circleSize, currentScore, highScore, difficulty, difficulty2; //difficulty i
 
 void setup() {
   background(0); 
-  //fullScreen();
-  size(600, 600);
+  fullScreen();
+  //size(600, 600);
   continueGame = true;
   paused = false; 
   circleSize = 15; 
@@ -16,7 +16,7 @@ void setup() {
   enemyContainer = new PriorityQueue();
   enemyContainer.add(new EnemyOne()); 
   difficulty = 3; 
-  difficulty2 = 60;
+  difficulty2 = 55;
 }
 
 void draw() {
@@ -25,7 +25,7 @@ void draw() {
     //frameRate(10);
     drawCircle(); 
     currentScore += (int) (10/6); //equal to 1 point per millisecond
-    textSize(30); 
+    textSize(50); 
     text(currentScore, width/2 - 25, height/2 + 15);    
     player.drawCharacter();
     addEnemy(); //will only add enemy every 5 seconds
@@ -61,7 +61,7 @@ void draw() {
 //draws two circles. There is an outer circle that represents the outer edge circle and an inner
 //circle that will help form the inner edge
 void drawCircle() {
-  float r = 2 * 200 - player.getSize();
+  float r = 2 * 450 - player.getSize();
   fill(245); 
   ellipse(width/2, height/2, r, r); //draws outer circle
   fill(0); //makes inner circle black. Appears concentric

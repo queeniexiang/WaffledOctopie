@@ -9,7 +9,8 @@ class Character {
   //default constructor 
   public Character() {
     myColor = color(0, 0, 0); //black color
-    posX = posY = radius = angle = 0;
+    posX = posY = angle = 0;
+    radius = 450; //outside circle 
     out = true; 
   }
 
@@ -45,7 +46,7 @@ class Character {
         radius = radius - size;
       } else {
         out = true;
-        radius = 200;
+        radius = 450;
     }
   }
   // ------------------- accessors -----------------------

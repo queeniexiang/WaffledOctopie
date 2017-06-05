@@ -1,7 +1,7 @@
 class EnemyOne extends Enemy {
 
   public EnemyOne() {
-    super(width/2, height/2, 200, 20, (int) random(0, 360), true, color(134, 30, 90), 1);
+    super(width/2, height/2, 450, 40, (int) random(0, 360), true, color(134, 30, 90), 1);
     if (random(10) < 5) {
       out = true;
     } else

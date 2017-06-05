@@ -4,7 +4,7 @@ class EnemyTwo extends Enemy {
   }
   
   public EnemyTwo(int inputPriority) {
-    super(width, height, 200, 20, 0, true, inputPriority, color(134,30,90));
+    super(width, height, 400, 40, 0, true, inputPriority, color(134,30,90));
   }
   
   public void drawCharacter() {

@@ -1,7 +1,7 @@
 class Player extends Character {
 
   Player() {
-    super(width/2, height/2, 200, 20, 270, true, #3bbc62); //200 is original radius size
+    super(width/2, height/2, 450, 40, 270, true, #3bbc62); //200 is original radius size
   }
 
   public boolean touching(Enemy other) {
