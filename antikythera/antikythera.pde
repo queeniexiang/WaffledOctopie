@@ -1,5 +1,6 @@
 Player player;
-PriorityQueue enemyContainer; 
+PriorityQueue enemyContainer;
+LLStack Upgrades; 
 boolean continueGame; 
 boolean paused;
 int circleSize, currentScore, highScore, difficulty, difficulty2; //difficulty is a var for time in sec and difficulty2 is a var for time in millisec
@@ -11,16 +12,17 @@ void setup() {
   continueGame = true;
   paused = false; 
   circleSize = 15; 
-  currentScore = highScore = 0; 
+  //currentScore = highScore = 0; 
   player = new Player();
   enemyContainer = new PriorityQueue();
-  enemyContainer.add(new EnemyOne()); 
+  Upgrades = new LLStack(); 
   difficulty = 3; 
   difficulty2 = 55;
 }
 
 void draw() {
   if (continueGame) {
+    determineDifficulty();
     background(0);
     //frameRate(10);
     drawCircle(); 
@@ -36,26 +38,23 @@ void draw() {
     stroke(0);
     if (isDead() || paused)
       continueGame = false;
-  }
-  else if (paused && !continueGame) {
+  } else if (paused && !continueGame) {
     background(0); 
-    drawUpgradeMenu(); 
-  }
-  else if (!paused && !isDead())
+    drawUpgradeMenu();
+  } else if (!paused && !isDead())
     continueGame = true;
   else {
-      background(0);
-      fill(255); 
-      textSize(50); 
-      text(currentScore, width/2 - 25, height/2 + 15); //prints final score
-      if (currentScore >= highScore) {
-        highScore = currentScore; 
-        textSize(20); 
-        text("Congratulations! You beat the highscore", width/2 - 150, height/2 - 40);
-      }
-      
+    background(0);
+    fill(255); 
+    textSize(50); 
+    text(currentScore, width/2 - 25, height/2 + 15); //prints final score
+    if (currentScore >= highScore) {
+      highScore = currentScore; 
+      textSize(20); 
+      text("Congratulations! You beat the highscore", width/2 - 150, height/2 - 40);
     }
   }
+}
 
 
 //draws two circles. There is an outer circle that represents the outer edge circle and an inner
@@ -69,80 +68,90 @@ void drawCircle() {
   fill(255); //resets filling to be white
 }
 
-//fabs
+//draws the menu for when the player pauses and is making a purchase for upgrades
 void drawUpgradeMenu() {
   fill(255);
   textSize(50);
-  text("Paused",width/2 - 100,height/2 - 200);
+  text("Paused", width/2 - 100, height/2 - 200);
   fill(255);
   textSize(25);
-  text("Choose an upgrade for a certain amount of points or press P to return to game", width/6 - 50,height/2 - 100);
-//double points
+  text("Choose an upgrade for a certain amount of points or press P to return to game", width/6 - 50, height/2 - 100);
+  //double points
   fill(255);
-  rect(width/8,height/2,250,200);
+  rect(width/8, height/2, 250, 200);
   textSize(30);
   fill(0);
-  text("Double Points", width/8 + 25,height/2 + 40);
-//description  
+  text("Double Points", width/8 + 25, height/2 + 40);
+  text("Cost:500", width/8 + 25, height/2 + 100);
+  //description  
   textSize(20);
   fill(0);
-  text("earn double points for a",width/8 + 5,height/2 + 145);
-  text("limitted amount of time",width/8 + 7,height/2 + 180);
-//slow down    
+  text("earn double points for a", width/8 + 5, height/2 + 145);
+  text("limited amount of time", width/8 + 7, height/2 + 180);
+  //slow down    
   fill(255);
-  rect(width/2 - 135,height/2,250,200);
+  rect(width/2 - 135, height/2, 250, 200);
   textSize(30);
   fill(0);
-  text("Slow Down", width/2 - 90 ,height/2 + 40);
+  text("Slow Down", width/2 - 90, height/2 + 40);
+  text("Cost:300", width/2 - 90, height/2 + 100);
   textSize(20);
   fill(0);
-  text("slow down enemies",width/2 - 100,height/2 + 165);
-//tbd
+  text("slow down enemies", width/2 - 100, height/2 + 165);
+  //tbd
   fill(255);
-  rect(5*(width/8) + 55,height/2,250,200);
+  rect(5*(width/8) + 55, height/2, 250, 200);
   textSize(30);
   fill(0);
-  text("TBD", 5*(width/8) + 50,height/2 + 40);
+  text("TBD", 5*(width/8) + 50, height/2 + 40);
   textSize(20);
   fill(0);
-  text("tbd",5*(width/8) + 50,height/2 + 80);
+  text("tbd", 5*(width/8) + 50, height/2 + 80);
+}
+
+//draws the most recently acquired upgrade on the side of the 
+void drawUpgradeContainer() {
 }
 
 //switches character's edge upon hitting space
 void keyPressed() {
   if (key == ' ') { 
-   if (continueGame)
-     player.switchSides();
-   else {
-     player = new Player(); 
-     currentScore = 0; 
-     enemyContainer = new PriorityQueue();      
-     continueGame = true;
-   }
+    if (continueGame)
+      player.switchSides();
+    else {
+      player = new Player(); 
+      currentScore = 0; 
+      enemyContainer = new PriorityQueue();      
+      continueGame = true;
+    }
   }
-  if (key == 'p'){
-   paused = !paused; 
+  if (key == 'p') {
+    paused = !paused;
+    //if (paused) {
+    //  if (key == 'q')
+    //  if (key == 'w')
+    //  if (key == 'e')
+    //}
   }
-  
 }
 
 //determines difficulty of game based on currentScore
 void determineDifficulty() {
-    if (currentScore == 400) {
-       difficulty2 = 40; 
-    }
-    if (currentScore == 600) {
-       difficulty = 2; 
-    }
-    if (currentScore == 2000) {
-      difficulty2 = 30;
-    }
-    if (currentScore%4000 == 0 && difficulty2 != 0) {
-       if (currentScore == 1)
-         difficulty = 1;
-       else
-         difficulty2 -= 1;
-    }
+  if (currentScore == 400) {
+    difficulty2 = 40;
+  }
+  if (currentScore == 600) {
+    difficulty = 2;
+  }
+  if (currentScore == 2000) {
+    difficulty2 = 30;
+  }
+  if (currentScore> 4000 && currentScore%1000 == 0 && difficulty2 != 0) {
+    if (currentScore == 4000)
+      difficulty = 1;
+    difficulty2 -= 1;
+    System.out.println(difficulty2);
+  }
 }
 
 //every 10 seconds add an enemy . The new enemy is decided randomly
@@ -153,7 +162,7 @@ void addEnemy() {
     if (dec > 50)
       adder = new EnemyOne(); 
     else 
-      adder = new Enemy(); 
+    adder = new Enemy(); 
     enemyContainer.add(adder);
   }
 }
