@@ -43,3 +43,4 @@ cd Antikythera
 processing Antikythera.pde 
 ```` 
 Upon entering the introduction page, the player can choose to read the instructions or dive right into the game. The game will start after a few seconds of delay.After choosing to start the game the player will spawn on a random side of the circle and begin moving while enemies are randomly spawned along the outer and innder sides of the circle. 
+To access the upgrade menu, press p. However, you cannot access the pause menu until you have at least 400 points, since that is the minimum amount of points required to purchase an upgrade. When in the upgrade menu, click on the box with the upgrade you like. The number shown in each box is the number of points that will be deducted from your score if you decide to purchase an upgrade. If you decide not to purchase an upgrade, just press p to return to the game. 
