@@ -8,6 +8,7 @@ int circleSize, currentScore, highScore, difficulty, difficulty2; //difficulty i
 void setup() {
   background(0); 
   fullScreen();
+  //drawIntroMenu();
   //size(600, 600);
   continueGame = true;
   paused = false; 
@@ -112,6 +113,15 @@ void drawUpgradeMenu() {
 //draws the most recently acquired upgrade on the side of the 
 void drawUpgradeContainer() {
 }
+
+void drawIntroMenu(){
+ background(0);
+ fill(255);
+ textSize(60);
+ text("Antikythera",width/2 - 50, height/2 + 200);
+ 
+}
+
 
 //switches character's edge upon hitting space
 void keyPressed() {
