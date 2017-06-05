@@ -14,6 +14,7 @@ void setup() {
   currentScore = highScore = 0; 
   player = new Player();
   enemyContainer = new PriorityQueue();
+  enemyContainer.add(new EnemyOne()); 
   difficulty = 3; 
   difficulty2 = 60;
 }
@@ -29,6 +30,7 @@ void draw() {
     player.drawCharacter();
     addEnemy(); //will only add enemy every 5 seconds
     drawEnemies(); 
+    cleanEnemies();
     stroke(255);
     //line(enemy1.getPosX(), enemy1.getPosY(), player.getPosX(), player.getPosY());
     stroke(0);
@@ -123,11 +125,26 @@ void keyPressed() {
 
 //determines difficulty of game based on currentScore
 void determineDifficulty() {
-  
+    if (currentScore == 400) {
+       difficulty2 = 40; 
+    }
+    if (currentScore == 600) {
+       difficulty = 2; 
+    }
+    if (currentScore == 2000) {
+      difficulty2 = 30;
+    }
+    if (currentScore%4000 == 0 && difficulty2 != 0) {
+       if (currentScore == 1)
+         difficulty = 1;
+       else
+         difficulty2 -= 1;
+    }
 }
+
 //every 10 seconds add an enemy . The new enemy is decided randomly
 void addEnemy() {
-  if (second()%difficulty == 0 && frameCount%difficulty2 == 0) {  //checks to see if x seconds passed and that if it is 1 frame within in the 60 fps
+  if (second()%difficulty == 0 && frameCount%difficulty2 == 0) {  //checks to see if x seconds passed and that if it is 1 frame within the 60 fps
     float dec = random(100);
     Enemy adder; 
     if (dec > 50)
@@ -150,4 +167,11 @@ boolean isDead() { //checks if the player is touching any enemies at all
       return true;
   }
   return false;
+}
+
+void cleanEnemies() {
+  if (enemyContainer.isEmpty())
+    return; 
+  if (enemyContainer.pop().isDead())
+    enemyContainer.remove();
 }

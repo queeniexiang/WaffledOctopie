@@ -1,11 +1,10 @@
 class EnemyOne extends Enemy {
 
   public EnemyOne() {
-    super(width/2, height/2, 200, 20, (int) random(0, 360), true, color(134, 30, 90), 10);
+    super(width/2, height/2, 200, 20, (int) random(0, 360), true, color(134, 30, 90), 1);
     if (random(10) < 5) {
       out = true;
-    }
-    else
+    } else
       out = false; 
     super.switchSides();
     posX = width/2 + radius * cos(radians(angle));
@@ -14,7 +13,10 @@ class EnemyOne extends Enemy {
 
 
   public void drawCharacter() {
-    fill(myColor); 
+    if (isFlickr())
+      fill(100); //opacity level decreased
+    else 
+      fill(myColor);
     ellipse(posX, posY, size, size);
   }
 }    

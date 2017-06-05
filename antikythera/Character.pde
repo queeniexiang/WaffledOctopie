@@ -48,7 +48,7 @@ class Character {
         radius = 200;
     }
   }
-  // ------------------- acessors -----------------------
+  // ------------------- accessors -----------------------
   public float getPosX() {
    return posX;  
   }
