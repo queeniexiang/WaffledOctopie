@@ -80,10 +80,17 @@ Queenie:
 Terry:
 1. Added PriorityQueue class. Copied from hw and then modified
 2. Added detection for ALL enemies
-3. Added methods isDead(), drawEnemy(), and addEnemy() 
+3. Added methods isDead(), drawEnemy(), and addEnemy()
 
 Queenie:
 1. Added implementation for a LLStack by using the Stack interface and the code that we derived from classwork and homework.
 2. Created Upgrades class that will store various features of upgrade items such as cost, item name, duration of item, and description of item.
 3. Created 2 different types of upgrades: slow-down and double-points. Slow-down will slow down the frame rate of all characters, thus slowing down movement of all players, for a duration of 10 seconds. Doubling the points will double the amount of a points per second that a player can receive for a duration of 10 seconds.
 4. Implemented a compareTo method for comparing the priorities of enemies.
+
+2017-06-04
+—————————————————————————————————————————
+Terry:
+1. Added previewing of enemies
+2. Added enemy death after a certain amount of time
+3. adjusted the game for fullscreen
