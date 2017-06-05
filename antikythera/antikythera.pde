@@ -61,7 +61,7 @@ void draw() {
 //draws two circles. There is an outer circle that represents the outer edge circle and an inner
 //circle that will help form the inner edge
 void drawCircle() {
-  float r = 2 * 450 - player.getSize();
+  float r = 2 * 400 - player.getSize();
   fill(245); 
   ellipse(width/2, height/2, r, r); //draws outer circle
   fill(0); //makes inner circle black. Appears concentric
