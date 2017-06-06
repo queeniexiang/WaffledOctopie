@@ -1,22 +1,16 @@
 Player player;
-<<<<<<< HEAD
 Enemy enemy; 
 EnemyOne enemy1;
 EnemyTwo enemy2;
 PriorityQueue enemyContainer; 
 ArrayList<Upgrades> UpgradesDisplayer;
 LLStack upgradesStorage; 
-boolean continueGame; 
-int circleSize, currentScore, highScore; 
 int levelDifficulty; 
-=======
-PriorityQueue enemyContainer;
 LLStack Upgrades; 
 boolean continueGame; 
 boolean paused;
 boolean introMenu; 
 int circleSize, currentScore, highScore, difficulty, difficulty2; //difficulty is a var for time in sec and difficulty2 is a var for time in millisec
->>>>>>> 89b3ecdab97cbcded8329996d836f9e33c76cf86
 
 void setup() {
   background(0); 
@@ -29,16 +23,13 @@ void setup() {
   //currentScore = highScore = 0; 
   player = new Player();
   enemyContainer = new PriorityQueue();
-<<<<<<< HEAD
   UpgradesDisplayer = new ArrayList<Upgrades>();
-  UpgradesDisplayer.add(new Upgrades()); 
+  UpgradesDisplayer.add(new UpgradeDoublePoints()); 
   upgradesStorage = new LLStack();
-  upgradesStorage.push(new Upgrades()); 
-=======
+  //upgradesStorage.push(new UpgradeSlowDown()); 
   Upgrades = new LLStack(); 
   difficulty = 3; 
   difficulty2 = 55;
->>>>>>> 89b3ecdab97cbcded8329996d836f9e33c76cf86
 }
 
 void draw() {
@@ -56,13 +47,9 @@ void draw() {
     player.drawCharacter();
     addEnemy(); //will only add enemy every 5 seconds
     drawEnemies(); 
-<<<<<<< HEAD
     drawUpgrades();
     //addUpgrades(); 
-
-=======
     cleanEnemies();
->>>>>>> 89b3ecdab97cbcded8329996d836f9e33c76cf86
     stroke(255);
     //line(enemy1.getPosX(), enemy1.getPosY(), player.getPosX(), player.getPosY());
     stroke(0);
@@ -202,6 +189,10 @@ void keyPressed() {
     //  if (key == 'e')
     //}
   }
+  
+  //if (introMenu) {
+      
+  //}
   if (key == 's') 
     introMenu = false; 
 }
@@ -252,7 +243,6 @@ boolean isDead() { //checks if the player is touching any enemies at all
   return false;
 }
 
-<<<<<<< HEAD
 void drawUpgrades() {
   Upgrades x;
   for (int i = 0; i < UpgradesDisplayer.size(); i++) {
@@ -267,18 +257,18 @@ void drawUpgrades() {
 
 //debugging
 void addUpgrades() { 
-    Upgrades adder;
-    adder = new Upgrades();
-    upgradesStorage.push(adder);
+    Upgrades adder = new UpgradeDoublePoints() ; 
+    UpgradesDisplayer.add(adder); 
 }
 
 void drawStorageUpgrade() {
     upgradesStorage.peek().drawUpgrades();
-=======
+}
+
+
 void cleanEnemies() {
   if (enemyContainer.isEmpty())
     return; 
   if (enemyContainer.pop().isDead())
     enemyContainer.remove();
->>>>>>> 89b3ecdab97cbcded8329996d836f9e33c76cf86
 }
