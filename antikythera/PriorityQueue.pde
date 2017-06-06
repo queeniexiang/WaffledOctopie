@@ -1,4 +1,3 @@
-
 public class PriorityQueue {
 
   private ArrayList<Enemy> data;
@@ -23,10 +22,13 @@ public class PriorityQueue {
     return data.get(i);
   } //O(1)
 
+  public Enemy pop() {
+    return data.get(data.size() - 1); 
+  }
   // removes from the back of the ArrayList
-  public Enemy remove(int i) {
-    Enemy ret = data.get(i);
-    data.remove(i);
+  public Enemy remove() {
+    Enemy ret = data.get(data.size() - 1);
+    data.remove(data.size() - 1);
     return ret;
   } //O(1)
 
