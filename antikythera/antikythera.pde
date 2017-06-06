@@ -114,14 +114,38 @@ void drawUpgradeMenu() {
 void drawUpgradeContainer() {
 }
 
+//draws start menu
 void drawIntroMenu(){
  background(0);
  fill(255);
  textSize(60);
- text("Antikythera",width/2 - 50, height/2 + 200);
- 
+ text("Antikythera",width/2 - 75, height/2 - 200);
+ //play button
+ fill(255);
+ rect(width/2 - 75, height/2, 150, 100);
+ fill(0);
+ textSize(30);
+ text("Play",width/2 - 65, height/2 + 30);
+ //instructions button
+ fill(255);
+ rect(width/2 - 75, height/2 + 200, 150, 100);
+ fill(0);
+ textSize(30);
+ text("Instructions",width/2 - 70, height/2 + 30);
 }
 
+//draws instructions for gameplay
+void drawInstructions(){
+  background(0);
+  fill(255);
+  textSize(40);
+  text("Instructions", width/2 - 75, height/2 - 200);
+  textSize(20);
+  text("Press the spacebar to switch sides and avoid enemies",width/2 - 100, height/2 - 100);
+  text("Press P to pause game and buy an upgrade if you have enough points", width/2 - 150, height/2);
+  text("You can only pause after getting at least 500 points", width/2 - 200, height/2 + 100);
+  text("press spacebar to start game!",width/2 - 50, height/2 + 150);
+}
 
 //switches character's edge upon hitting space
 void keyPressed() {

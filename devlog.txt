@@ -112,6 +112,8 @@ Fabiola:
 _________________________________________
 Fabiola:
 1. Updated devlog and readme 
+2. Worked on new methods drawIntroMenu() and drawInstructions() to make gameplay more clear and organized
 
 Terry:
-1. Made game impossible
+1. worked on stuff
+
