@@ -3,14 +3,15 @@ PriorityQueue enemyContainer;
 LLStack Upgrades; 
 boolean continueGame; 
 boolean paused;
+boolean introMenu; 
 int circleSize, currentScore, highScore, difficulty, difficulty2; //difficulty is a var for time in sec and difficulty2 is a var for time in millisec
 
 void setup() {
   background(0); 
   fullScreen();
-  //drawIntroMenu();
   //size(600, 600);
-  continueGame = true;
+  continueGame = false;
+  introMenu = true; 
   paused = false; 
   circleSize = 15; 
   //currentScore = highScore = 0; 
@@ -22,7 +23,10 @@ void setup() {
 }
 
 void draw() {
-  if (continueGame) {
+  if (introMenu) {
+    drawIntroMenu();
+  }
+  if (continueGame && !introMenu) {
     determineDifficulty();
     background(0);
     //frameRate(10);
@@ -71,6 +75,7 @@ void drawCircle() {
 
 //draws the menu for when the player pauses and is making a purchase for upgrades
 void drawUpgradeMenu() {
+  //ADD CURRENT SCORE IN CORNER
   fill(255);
   textSize(50);
   text("Paused", width/2 - 100, height/2 - 200);
@@ -83,11 +88,11 @@ void drawUpgradeMenu() {
   textSize(30);
   fill(0);
   text("Double Points", width/8 + 25, height/2 + 40);
-  text("Cost:500", width/8 + 25, height/2 + 100);
+  text("-500 pts", width/8 + 40, height/2 + 100);
   //description  
   textSize(20);
   fill(0);
-  text("earn double points for a", width/8 + 5, height/2 + 145);
+  text("earn double points for a", width/8 + 5, height/2 + 155);
   text("limited amount of time", width/8 + 7, height/2 + 180);
   //slow down    
   fill(255);
@@ -95,19 +100,23 @@ void drawUpgradeMenu() {
   textSize(30);
   fill(0);
   text("Slow Down", width/2 - 90, height/2 + 40);
-  text("Cost:300", width/2 - 90, height/2 + 100);
+  text("-300 pts", width/2 - 80, height/2 + 100);
   textSize(20);
   fill(0);
   text("slow down enemies", width/2 - 100, height/2 + 165);
-  //tbd
+  //survive three hits
   fill(255);
   rect(5*(width/8) + 55, height/2, 250, 200);
-  textSize(30);
+  textSize(27);
   fill(0);
-  text("TBD", 5*(width/8) + 50, height/2 + 40);
+  text("Temporary", 5*(width/8) + 110, height/2 + 30);
+  text("Invincibility",5*(width/8) + 105, height/2 + 60);
+  textSize(30);
+  text("-700 pts",5*(width/8) + 120, height/2 + 100);
   textSize(20);
   fill(0);
-  text("tbd", 5*(width/8) + 50, height/2 + 80);
+  text("survive three hits", 5*(width/8) + 90, height/2 + 155);
+  text("from an enemy", 5*(width/8) + 100, height/2 + 180);
 }
 
 //draws the most recently acquired upgrade on the side of the 
@@ -119,19 +128,19 @@ void drawIntroMenu(){
  background(0);
  fill(255);
  textSize(60);
- text("Antikythera",width/2 - 75, height/2 - 200);
+ text("Antikythera",width/2 - 200, height/2 - 200);
  //play button
  fill(255);
- rect(width/2 - 75, height/2, 150, 100);
+ rect(width/2 - 160, height/2, 250, 100);
  fill(0);
- textSize(30);
- text("Play",width/2 - 65, height/2 + 30);
+ textSize(40);
+ text("Play",width/2 - 80, height/2 + 60);
  //instructions button
  fill(255);
- rect(width/2 - 75, height/2 + 200, 150, 100);
+ rect(width/2 - 160, height/2 + 200, 250, 100);
  fill(0);
- textSize(30);
- text("Instructions",width/2 - 70, height/2 + 30);
+ textSize(40);
+ text("Instructions",width/2 - 145, height/2 + 260);
 }
 
 //draws instructions for gameplay
@@ -141,8 +150,8 @@ void drawInstructions(){
   textSize(40);
   text("Instructions", width/2 - 75, height/2 - 200);
   textSize(20);
-  text("Press the spacebar to switch sides and avoid enemies",width/2 - 100, height/2 - 100);
-  text("Press P to pause game and buy an upgrade if you have enough points", width/2 - 150, height/2);
+  text("Press the spacebar to switch sides and avoid enemies",width/2 - 100, height/2 - 150);
+  text("Press P to pause game and buy an upgrade if you have enough points", width/2 - 200, height/2);
   text("You can only pause after getting at least 500 points", width/2 - 200, height/2 + 100);
   text("press spacebar to start game!",width/2 - 50, height/2 + 150);
 }
@@ -168,6 +177,8 @@ void keyPressed() {
     //  if (key == 'e')
     //}
   }
+  if (key == 's') 
+    introMenu = false; 
 }
 
 //determines difficulty of game based on currentScore
