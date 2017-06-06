@@ -3,8 +3,11 @@ Enemy enemy;
 EnemyOne enemy1;
 EnemyTwo enemy2;
 PriorityQueue enemyContainer; 
+ArrayList<Upgrades> UpgradesDisplayer;
+LLStack upgradesStorage; 
 boolean continueGame; 
 int circleSize, currentScore, highScore; 
+int levelDifficulty; 
 
 void setup() {
   background(0); 
@@ -15,6 +18,10 @@ void setup() {
   currentScore = highScore = 0; 
   player = new Player();
   enemyContainer = new PriorityQueue();
+  UpgradesDisplayer = new ArrayList<Upgrades>();
+  UpgradesDisplayer.add(new Upgrades()); 
+  upgradesStorage = new LLStack();
+  upgradesStorage.push(new Upgrades()); 
 }
 
 void draw() {
@@ -28,6 +35,9 @@ void draw() {
     player.drawCharacter();
     addEnemy(); //will only add enemy every 5 seconds
     drawEnemies(); 
+    drawUpgrades();
+    //addUpgrades(); 
+
     stroke(255);
     //line(enemy1.getPosX(), enemy1.getPosY(), player.getPosX(), player.getPosY());
     stroke(0);
@@ -88,4 +98,27 @@ boolean isDead() { //checks if the player is touching any enemies at all
       return true;
   }
   return false;
+}
+
+void drawUpgrades() {
+  Upgrades x;
+  for (int i = 0; i < UpgradesDisplayer.size(); i++) {
+    x = UpgradesDisplayer.get(i); 
+    x.drawUpgrades(); 
+    if (player.touchingUpgrades(x)) {
+      upgradesStorage.push(x);
+      UpgradesDisplayer.remove(i);  
+    }
+  }
+}
+
+//debugging
+void addUpgrades() { 
+    Upgrades adder;
+    adder = new Upgrades();
+    upgradesStorage.push(adder);
+}
+
+void drawStorageUpgrade() {
+    upgradesStorage.peek().drawUpgrades();
 }

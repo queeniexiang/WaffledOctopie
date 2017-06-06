@@ -12,4 +12,13 @@ class Player extends Character {
     else 
       return false;
   }
+  
+  public boolean touchingUpgrades(Upgrades other) {
+    float distance = dist(posX, posY, other.posX, other.posY); //calculates distance betw 2 circles
+    //System.out.println("distance: " + distance + "radius: " + other.getRadius());
+    if (distance <= 0)
+      return true;
+    else 
+      return false;
+  }
 }

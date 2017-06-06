@@ -45,4 +45,8 @@ public class LLStack<T> implements Stack<Upgrades>
   {
     return (_stack.size()==0);
   }
+  
+  public int size() {
+    return _stack.size();
+  } 
 }
