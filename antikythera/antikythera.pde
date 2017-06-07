@@ -105,8 +105,9 @@ void keyPressed() {
 //------------------ GAME METHODS -------------------
 //for when the game is still playing 
 void playGame() {
-  if (isDead())
+  if (isDead()) {
     state = 3;
+  }
   determineDifficulty();
   background(0);
   //frameRate(10);
@@ -146,6 +147,11 @@ void resetGame() {
     textSize(20); 
     text("Congratulations! You beat the highscore", width/2 - 150, height/2 - 40);
   }
+  
+  else {
+    textSize(20);
+    text("Better luck next time! Your score is " + "\n", width/2-150, height/2 - 40); //prints final score
+  } 
   player = new Player();
 }
 //determines difficulty of game based on currentScore

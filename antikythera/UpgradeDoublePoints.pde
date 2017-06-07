@@ -25,10 +25,11 @@ public class UpgradeDoublePoints extends Upgrades {
 
   public void drawUpgrades() {
     fill(143, 120, 100); 
+    noStroke(); 
     ellipse(posX, posY, size, size);
-    textSize(25);
+    textSize(22);
     fill(10, 255, 10); 
-    text("2", posX - 5, posY + 10);
+    text("2X", posX - 7, posY + 10);
     fill(255); //resets fill color
   }
 
@@ -36,9 +37,10 @@ public class UpgradeDoublePoints extends Upgrades {
   public void drawUpgrades(float x, float y) {
     fill(143, 120, 100); 
     ellipse(x, y, size, size);
-    textSize(25);
+    noStroke(); 
+    textSize(22);
     fill(10, 255, 10); 
-    text("2", x - 5, y + 10);
+    text("2X", x - 7, y + 10);
     fill(255); //resets the fill color
   }
 

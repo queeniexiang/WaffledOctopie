@@ -20,21 +20,23 @@ public class UpgradeSlowDown extends Upgrades {
   public void drawUpgrades() { 
     fill(255, 100, 30);
     ellipse(posX, posY, size, size);
-    textSize(25);
+    textSize(22);
     //fills the negative color depending on whether its in the white bar or not
     fill(0, 0, 255); 
-    text("t", posX - 5, posY + 10);
+    noStroke(); 
+    text("SD", posX - 7, posY + 10);
     fill(255); //resets fill color
   } 
 
   //draws the upgrade at an arbitrary location. Used for drawing the "next upgrade" in the game
   public void drawUpgrades(float x, float y) {
     fill(255, 100, 30);
+    noStroke(); 
     ellipse(x, y, size, size);
-    textSize(25);
+    textSize(22);
     //fills the negative color depending on whether its in the white bar or not
     fill(0, 0, 255); 
-    text("t", x - 5, y + 10);
+    text("SD", x - 7, y + 10);
     fill(255); //resets fill color
   }
 
