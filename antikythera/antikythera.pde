@@ -278,6 +278,8 @@ void drawStorageUpgrade() {
 }
 
 void useUpgrades() {
+  if (upgradesStorage.isEmpty())
+    return;
   if (upgradesStorage.peek().stillWorking()) {
     upgradesStorage.peek().useUpgrade();
   } else {
