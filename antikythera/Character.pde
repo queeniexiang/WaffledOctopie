@@ -10,8 +10,8 @@ class Character {
   public Character() {
     myColor = color(0, 0, 0); //black color
     posX = posY = angle = 0;
-    radius = 400; //outside circle 
-    out = true; 
+    radius = RADIUS; //outside circle 
+    out = true;
   }
 
   //overload constructor
@@ -22,7 +22,7 @@ class Character {
     this.size = size; 
     this.out = out; 
     this.angle = angle;
-    this.myColor = myColor; 
+    this.myColor = myColor;
   }
 
   public void drawCharacter() {
@@ -39,49 +39,48 @@ class Character {
     posX = width/2 + radius * cos(radians(angle));  //width/2 centers the x cor of character
     posY = height/2 + radius * sin(radians(angle)); //height/2 centers the y cor of character
   }
-  
+
   public void switchSides() {
-      if (out) {
-        out = false; 
-        radius = radius - size;
-      } else {
-        out = true;
-        radius = 400;
+    if (out) {
+      out = false; 
+      radius = radius - size;
+    } else {
+      out = true;
+      radius = RADIUS;
     }
   }
   // ------------------- accessors -----------------------
   public float getPosX() {
-   return posX;  
+    return posX;
   }
-  
+
   public float getPosY() {
-   return posY;  
+    return posY;
   }
-  
+
   public float getRadius() {
-   return radius;  
+    return radius;
   }
-  
+
   public int getSize() {
-   return size;  
+    return size;
   }
-  
+
   public int getAngle() {
-     return angle;  
+    return angle;
   }
-  
+
   //------------------ end of accessors -------------------
-  
+
   public int setAngle(int newAngle) {
     int oldAngle = angle; 
     angle = newAngle; 
     return oldAngle;
   }
-  
+
   public boolean setOut(boolean newOut) {
     boolean oldOut = out; 
     out = newOut;
-    return oldOut; 
+    return oldOut;
   }
-  
 } //end of class 

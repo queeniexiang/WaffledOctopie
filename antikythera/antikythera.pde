@@ -1,3 +1,4 @@
+public final int RADIUS = 400;
 Player player;
 Enemy enemy; 
 PriorityQueue enemyContainer; 
@@ -22,7 +23,7 @@ void setup() {
   player = new Player();
   enemyContainer = new PriorityQueue();
   UpgradesDisplayer = new ArrayList<Upgrades>();
-  UpgradesDisplayer.add(new UpgradeDoublePoints()); 
+  UpgradesDisplayer.add(new UpgradeSlowDown()); 
   upgradesStorage = new LLStack();
   //upgradesStorage.push(new UpgradeSlowDown()); 
   Upgrades = new LLStack(); 
@@ -55,8 +56,10 @@ void keyPressed() {
   if (key == ' ') { 
     if (state == 1)
       player.switchSides();
-    else
+    else {
+      currentScore = 0;
       state = 1;
+    }
   }
   if (key == 'p') {
     if (currentScore >= 300) {
@@ -65,11 +68,19 @@ void keyPressed() {
       else 
       state = 2;
     }
-    //if (state == 2) {
-    //  if (key == 'q')
-    //  if (key == 'w')
-    //  if (key == 'e')
-    //}
+    if (state == 2) {
+      Upgrades x;
+      if (key == 'q') { 
+        x = new UpgradeDoublePoints();
+        upgradesStorage.push(x);
+        currentScore -= x.getCost();
+      } else if (key == 'w') {
+        x = new UpgradeSlowDown();
+        upgradesStorage.push(x);
+        currentScore -= x.getCost();
+      }
+      //if (key == 'e')
+    }
   }
   if (key == '1') {
     if (state == 4)
@@ -79,8 +90,6 @@ void keyPressed() {
       state = 4;
     }
   }
-  if (key == 's') 
-    state = 1;
   if (key == 'z' && !upgradesStorage.isEmpty())
     useUpgrades = true;
 }
@@ -93,20 +102,20 @@ void playGame() {
   determineDifficulty();
   background(0);
   //frameRate(10);
-  drawCircle(); 
-  currentScore += 1; //equal to 60 points per secon
+  drawCircle(); //draws map
+  drawUpgradeContainer();
+  if (frameCount%2 == 0)
+    currentScore += 1; //1 point per 2 frame
   textSize(50); 
   text(currentScore, width/2 - 25, height/2 + 15);    
   player.drawCharacter();
   addEnemy(); //will only add enemy every 5 seconds
-  drawEnemies(); 
-  drawUpgrades();
+  drawEnemies(); //draws all enemies onto the screen
+  drawUpgrades(); //draws all upgrades onto the screen
   //addUpgrades();
   if (useUpgrades)
     useUpgrades();
-  cleanEnemies();
-  stroke(255);
-  stroke(0);
+  cleanEnemies(); //removes dead enemies from screen
 }
 
 //when the player enters the pause menu
@@ -129,8 +138,7 @@ void resetGame() {
     textSize(20); 
     text("Congratulations! You beat the highscore", width/2 - 150, height/2 - 40);
   }
-  player = new Player(); 
-  currentScore = 0;
+  player = new Player();
 }
 //determines difficulty of game based on currentScore
 void determineDifficulty() {
@@ -199,7 +207,6 @@ void drawUpgrades() {
 }
 
 // ----------------------- UPGGRADE METHODS -----------------------
-//debugging
 void addUpgrades() { 
   Upgrades adder = new UpgradeDoublePoints() ; 
   UpgradesDisplayer.add(adder);
@@ -220,11 +227,17 @@ void useUpgrades() {
   }
 }
 
+//draws the most recently acquired upgrade on the side of the 
+void drawUpgradeContainer() {
+  if (!upgradesStorage.isEmpty())
+    upgradesStorage.peek().drawUpgrades(40, height - 40); 
+}
+
 // ---------------------------------------------- HARDCODED MENU METHODS -----------------------------------
 //draws two circles. There is an outer circle that represents the outer edge circle and an inner
 //circle that will help form the inner edge
 void drawCircle() {
-  float r = 2 * 400 - player.getSize();
+  float r = 2 * RADIUS - player.getSize();
   fill(245); 
   ellipse(width/2, height/2, r, r); //draws outer circle
   fill(0); //makes inner circle black. Appears concentric
@@ -240,10 +253,11 @@ void drawUpgradeMenu() {
   text("Paused", width/2 - 100, height/2 - 200);
   fill(255);
   textSize(25);
-  text("Choose an upgrade for a certain amount of points or press P to return to game", width/6 - 50, height/2 - 100);
+  text("Choose an upgrade for a certain amount of earned points or press P to return to game", width/6 - 50, height/2 - 100);
+  text("Current Score: " + currentScore, width/6 - 50, height/2 - 100);
   //double points
   fill(255);
-  rect(width/8, height/2, 250, 200);
+  rect(width/8, height/2, 250, 210);
   textSize(30);
   fill(0);
   text("Double Points", width/8 + 25, height/2 + 40);
@@ -251,8 +265,9 @@ void drawUpgradeMenu() {
   //description  
   textSize(20);
   fill(0);
-  text("earn double points for a", width/8 + 5, height/2 + 155);
+  text("earn double points for a", width/8 + 4, height/2 + 155);
   text("limited amount of time", width/8 + 7, height/2 + 180);
+  text("Buy: press q", width/8 + 7, height/2 + 200);
   //slow down    
   fill(255);
   rect(width/2 - 135, height/2, 250, 200);
@@ -263,6 +278,7 @@ void drawUpgradeMenu() {
   textSize(20);
   fill(0);
   text("slow down enemies", width/2 - 100, height/2 + 165);
+  text("Buy: press w", width/2 - 100, height/2 + 185);
   //survive three hits
   fill(255);
   rect(5*(width/8) + 55, height/2, 250, 200);
@@ -278,20 +294,16 @@ void drawUpgradeMenu() {
   text("from an enemy", 5*(width/8) + 100, height/2 + 180);
 }
 
-//draws the most recently acquired upgrade on the side of the 
-void drawUpgradeContainer() {
-}
-
 //draws start menu
 void drawIntroMenu() {
   background(0);
-  fill(0,100,255);
+  fill(0, 100, 255);
   textSize(60);
   text("Antikythera", width/2 - 200, height/2 - 200);
   //play
   fill(255);
   textSize(30);
-  text("Press s to play", width/2 - 200, height/2 - 40);
+  text("Press space to play", width/2 - 200, height/2 - 40);
   //instructions
   text("Press 1 for instructions", width/2 - 200, height/2 + 40);
 }

@@ -4,15 +4,11 @@ class EnemyTwo extends Enemy {
   }
   
   public EnemyTwo(int inputPriority) {
-    super(width, height, 400, 40, 0, true, inputPriority, color(134,30,90));
+    super(width, height, RADIUS, 40, 0, true, inputPriority, color(134,30,90));
   }
   
   public void drawCharacter() {
-    //System.out.println(posX);
-    //System.out.println(posY);  
     fill (134, 30, 90);
-    //System.out.println(posX);
-    //System.out.println(posY); 
     ellipse(posX, posY, size, size); 
     posX -= 3; 
     posY -= 3;
