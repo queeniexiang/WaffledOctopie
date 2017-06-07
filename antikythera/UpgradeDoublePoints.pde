@@ -32,7 +32,6 @@ public class UpgradeDoublePoints extends Upgrades {
   public void useUpgrade() {
       currentScore += 1;
       duration += (float)1/60; //equates to adding 1 per second    
-      System.out.println(duration);
   }
  
   public boolean stillWorking() {
