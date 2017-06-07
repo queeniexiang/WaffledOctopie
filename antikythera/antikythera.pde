@@ -1,4 +1,4 @@
-public final int RADIUS = 400;
+final int RADIUS = 400;
 Player player;
 Enemy enemy; 
 PriorityQueue enemyContainer; 
@@ -23,7 +23,6 @@ void setup() {
   player = new Player();
   enemyContainer = new PriorityQueue();
   UpgradesDisplayer = new ArrayList<Upgrades>();
-  UpgradesDisplayer.add(new UpgradeSlowDown()); 
   upgradesStorage = new LLStack();
   //upgradesStorage.push(new UpgradeSlowDown()); 
   Upgrades = new LLStack(); 
@@ -104,6 +103,7 @@ void playGame() {
   //frameRate(10);
   drawCircle(); //draws map
   drawUpgradeContainer();
+  spawnUpgrades();
   if (frameCount%2 == 0)
     currentScore += 1; //1 point per 2 frame
   textSize(50); 
@@ -112,7 +112,6 @@ void playGame() {
   addEnemy(); //will only add enemy every 5 seconds
   drawEnemies(); //draws all enemies onto the screen
   drawUpgrades(); //draws all upgrades onto the screen
-  //addUpgrades();
   if (useUpgrades)
     useUpgrades();
   cleanEnemies(); //removes dead enemies from screen
@@ -194,26 +193,20 @@ void cleanEnemies() {
     enemyContainer.remove();
 }
 
-void drawUpgrades() {
-  Upgrades x;
-  for (int i = 0; i < UpgradesDisplayer.size(); i++) {
-    x = UpgradesDisplayer.get(i); 
-    x.drawUpgrades(); 
-    if (player.touchingUpgrades(x)) {
-      upgradesStorage.push(x);
-      UpgradesDisplayer.remove(i);
-    }
-  }
-}
 
 // ----------------------- UPGGRADE METHODS -----------------------
-void addUpgrades() { 
-  Upgrades adder = new UpgradeDoublePoints() ; 
-  UpgradesDisplayer.add(adder);
-}
-
-void drawStorageUpgrade() {
-  upgradesStorage.peek().drawUpgrades();
+void spawnUpgrades() { 
+  if (frameCount%900 == 0 && random(100) > 50) { //60 fps * 10 s = 600
+    Upgrades adder;
+    float x = random(100); 
+    if (x < 25) 
+      adder = new UpgradeSlowDown(); 
+    else if (x < 50)
+      adder = new UpgradeDoublePoints();
+    else 
+      adder = new UpgradeImmunity(); 
+    UpgradesDisplayer.add(adder);
+  }
 }
 
 void useUpgrades() {
@@ -227,10 +220,23 @@ void useUpgrades() {
   }
 }
 
+void drawUpgrades() {
+  Upgrades x;
+  for (int i = 0; i < UpgradesDisplayer.size(); i++) {
+    x = UpgradesDisplayer.get(i); 
+    x.drawUpgrades(); 
+    if (player.touchingUpgrades(x) && upgradesStorage.size() <= 3) { //limits the player to collect only 3 upgrades
+      upgradesStorage.push(x);
+      UpgradesDisplayer.remove(i);
+    }
+  }
+}
+
 //draws the most recently acquired upgrade on the side of the 
 void drawUpgradeContainer() {
-  if (!upgradesStorage.isEmpty())
-    upgradesStorage.peek().drawUpgrades(40, height - 40); 
+  if (!upgradesStorage.isEmpty()) {
+    upgradesStorage.peek().drawUpgrades(40, height - 40);
+  }
 }
 
 // ---------------------------------------------- HARDCODED MENU METHODS -----------------------------------

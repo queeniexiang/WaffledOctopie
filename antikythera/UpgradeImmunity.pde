@@ -1,7 +1,7 @@
-public class UpgradeSlowDown extends Upgrades {
+public class UpgradeImmunity extends Upgrades {
 
   //vars cost, size, radius, duration, posX, posY, angle need to be used
-  public UpgradeSlowDown() {
+  public UpgradeImmunity() {
     cost = 300; 
     duration = 0; 
     angle = (int) random(0, 360);
@@ -18,36 +18,36 @@ public class UpgradeSlowDown extends Upgrades {
   }
 
   public void drawUpgrades() { 
-    fill(255, 100, 30);
+    fill(0, 0, 255);
     ellipse(posX, posY, size, size);
     textSize(25);
     //fills the negative color depending on whether its in the white bar or not
-    fill(0, 0, 255); 
-    text("t", posX - 5, posY + 10);
+    fill(0, 255, 0); 
+    text("3", posX - 5, posY + 10);
     fill(255); //resets fill color
   } 
 
   //draws the upgrade at an arbitrary location. Used for drawing the "next upgrade" in the game
   public void drawUpgrades(float x, float y) {
-    fill(255, 100, 30);
+    fill(0, 0, 255);
     ellipse(x, y, size, size);
     textSize(25);
     //fills the negative color depending on whether its in the white bar or not
-    fill(0, 0, 255); 
-    text("t", x - 5, y + 10);
+    fill(0, 255, 0); 
+    text("3", x - 5, y + 10);
     fill(255); //resets fill color
   }
 
   public void useUpgrade() {
-    frameRate(25); //"slows" down the game
+    player.setisDetecting(false);
     duration += (float)1/frameRate; //equates to adding 1 per second
   }
 
   public boolean stillWorking() {
-    if (duration <= 3.5)
+    if (duration <= 4)
       return true;
     else {
-      frameRate(60); //resets frameRate back to original
+      player.setisDetecting(true); //resets frameRate back to original
       return false;
     }
   }
