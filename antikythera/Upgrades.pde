@@ -4,7 +4,7 @@ public abstract class Upgrades {
   public String itemName;
   public  String itemType; 
   public String function;
-  public int duration; 
+  public float duration; 
   public String description;
   public int angle; 
   public float posX, posY; 
@@ -12,4 +12,7 @@ public abstract class Upgrades {
 
   public abstract void drawUpgrades();
  
+  public abstract void useUpgrade();
+ 
+  public abstract boolean stillWorking(); 
 }

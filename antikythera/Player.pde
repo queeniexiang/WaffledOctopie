@@ -16,7 +16,7 @@ class Player extends Character {
   public boolean touchingUpgrades(Upgrades other) {
     float distance = dist(posX, posY, other.posX, other.posY); //calculates distance betw 2 circles
     //System.out.println("distance: " + distance + "radius: " + other.getRadius());
-    if (distance <= 0)
+    if (distance <= 10)
       return true;
     else 
       return false;

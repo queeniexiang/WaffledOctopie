@@ -1,3 +1,4 @@
+public int state;
 Player player;
 Enemy enemy; 
 EnemyOne enemy1;
@@ -9,8 +10,11 @@ int levelDifficulty;
 LLStack Upgrades; 
 boolean continueGame; 
 boolean paused;
-boolean introMenu; 
-int circleSize, currentScore, highScore, difficulty, difficulty2; //difficulty is a var for time in sec and difficulty2 is a var for time in millisec
+boolean introMenu;
+boolean useUpgrades;
+public int currentScore;
+int circleSize, highScore, difficulty, difficulty2; //difficulty is a var for time in sec and difficulty2 is a var for time in millisec
+
 
 void setup() {
   background(0); 
@@ -19,7 +23,9 @@ void setup() {
   continueGame = false;
   introMenu = true; 
   paused = false; 
-  circleSize = 15; 
+  circleSize = 15;
+  state = 0; 
+  useUpgrades = false; 
   //currentScore = highScore = 0; 
   player = new Player();
   enemyContainer = new PriorityQueue();
@@ -41,14 +47,16 @@ void draw() {
     background(0);
     //frameRate(10);
     drawCircle(); 
-    currentScore += (int) (10/6); //equal to 1 point per millisecond
+    currentScore += 1; //equal to 60 points per secon
     textSize(50); 
     text(currentScore, width/2 - 25, height/2 + 15);    
     player.drawCharacter();
     addEnemy(); //will only add enemy every 5 seconds
     drawEnemies(); 
     drawUpgrades();
-    //addUpgrades(); 
+    //addUpgrades();
+    if (useUpgrades)
+      useUpgrades();
     cleanEnemies();
     stroke(255);
     //line(enemy1.getPosX(), enemy1.getPosY(), player.getPosX(), player.getPosY());
@@ -63,6 +71,9 @@ void draw() {
   else {
     background(0);
     fill(255); 
+    enemyContainer = new PriorityQueue(); 
+    upgradesStorage = new LLStack(); 
+    UpgradesDisplayer = new ArrayList<Upgrades>(); 
     textSize(50); 
     text(currentScore, width/2 - 25, height/2 + 15); //prints final score
     if (currentScore >= highScore) {
@@ -70,6 +81,8 @@ void draw() {
       textSize(20); 
       text("Congratulations! You beat the highscore", width/2 - 150, height/2 - 40);
     }
+    player = new Player(); 
+    currentScore = 0;
   }
 }
 
@@ -122,9 +135,9 @@ void drawUpgradeMenu() {
   textSize(27);
   fill(0);
   text("Temporary", 5*(width/8) + 110, height/2 + 30);
-  text("Invincibility",5*(width/8) + 105, height/2 + 60);
+  text("Invincibility", 5*(width/8) + 105, height/2 + 60);
   textSize(30);
-  text("-700 pts",5*(width/8) + 120, height/2 + 100);
+  text("-700 pts", 5*(width/8) + 120, height/2 + 100);
   textSize(20);
   fill(0);
   text("survive three hits", 5*(width/8) + 90, height/2 + 155);
@@ -136,36 +149,36 @@ void drawUpgradeContainer() {
 }
 
 //draws start menu
-void drawIntroMenu(){
- background(0);
- fill(255);
- textSize(60);
- text("Antikythera",width/2 - 200, height/2 - 200);
- //play button
- fill(255);
- rect(width/2 - 160, height/2, 250, 100);
- fill(0);
- textSize(40);
- text("Play",width/2 - 80, height/2 + 60);
- //instructions button
- fill(255);
- rect(width/2 - 160, height/2 + 200, 250, 100);
- fill(0);
- textSize(40);
- text("Instructions",width/2 - 145, height/2 + 260);
+void drawIntroMenu() {
+  background(0);
+  fill(255);
+  textSize(60);
+  text("Antikythera", width/2 - 200, height/2 - 200);
+  //play button
+  fill(255);
+  rect(width/2 - 160, height/2, 250, 100);
+  fill(0);
+  textSize(40);
+  text("Play", width/2 - 80, height/2 + 60);
+  //instructions button
+  fill(255);
+  rect(width/2 - 160, height/2 + 200, 250, 100);
+  fill(0);
+  textSize(40);
+  text("Instructions", width/2 - 145, height/2 + 260);
 }
 
 //draws instructions for gameplay
-void drawInstructions(){
+void drawInstructions() {
   background(0);
   fill(255);
   textSize(40);
   text("Instructions", width/2 - 75, height/2 - 200);
   textSize(20);
-  text("Press the spacebar to switch sides and avoid enemies",width/2 - 100, height/2 - 150);
+  text("Press the spacebar to switch sides and avoid enemies", width/2 - 100, height/2 - 150);
   text("Press P to pause game and buy an upgrade if you have enough points", width/2 - 200, height/2);
   text("You can only pause after getting at least 500 points", width/2 - 200, height/2 + 100);
-  text("press spacebar to start game!",width/2 - 50, height/2 + 150);
+  text("press spacebar to start game!", width/2 - 50, height/2 + 150);
 }
 
 //switches character's edge upon hitting space
@@ -174,9 +187,6 @@ void keyPressed() {
     if (continueGame)
       player.switchSides();
     else {
-      player = new Player(); 
-      currentScore = 0; 
-      enemyContainer = new PriorityQueue();      
       continueGame = true;
     }
   }
@@ -189,12 +199,14 @@ void keyPressed() {
     //  if (key == 'e')
     //}
   }
-  
+
   //if (introMenu) {
-      
+
   //}
   if (key == 's') 
-    introMenu = false; 
+    introMenu = false;
+  if (key == 'z' && !upgradesStorage.isEmpty())
+    useUpgrades = true;
 }
 
 //determines difficulty of game based on currentScore
@@ -250,21 +262,29 @@ void drawUpgrades() {
     x.drawUpgrades(); 
     if (player.touchingUpgrades(x)) {
       upgradesStorage.push(x);
-      UpgradesDisplayer.remove(i);  
+      UpgradesDisplayer.remove(i);
     }
   }
 }
 
 //debugging
 void addUpgrades() { 
-    Upgrades adder = new UpgradeDoublePoints() ; 
-    UpgradesDisplayer.add(adder); 
+  Upgrades adder = new UpgradeDoublePoints() ; 
+  upgradesStorage.push(adder);
 }
 
 void drawStorageUpgrade() {
-    upgradesStorage.peek().drawUpgrades();
+  upgradesStorage.peek().drawUpgrades();
 }
 
+void useUpgrades() {
+  if (upgradesStorage.peek().stillWorking()) {
+    upgradesStorage.peek().useUpgrade();
+  } else {
+    upgradesStorage.pop();
+    useUpgrades = false;
+  }
+}
 
 void cleanEnemies() {
   if (enemyContainer.isEmpty())

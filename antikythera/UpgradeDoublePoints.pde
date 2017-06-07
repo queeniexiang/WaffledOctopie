@@ -26,6 +26,19 @@ public class UpgradeDoublePoints extends Upgrades {
   
   public void drawUpgrades() {
     fill(143, 120, 100); 
-    ellipse(posX, posY, size, size); 
+    ellipse(posX, posY, size, size);
+  }
+  
+  public void useUpgrade() {
+      currentScore += 1;
+      duration += (float)1/60; //equates to adding 1 per second    
+      System.out.println(duration);
+  }
+ 
+  public boolean stillWorking() {
+    if (duration <= 10)
+      return true;
+     else 
+      return false;
   }
 }
