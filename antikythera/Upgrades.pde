@@ -1,5 +1,4 @@
-public abstract class Upgrades {
-  PShape slowDown, partA, partB;  
+public abstract class Upgrades {  
   public int cost; 
   public String itemName;
   public  String itemType; 

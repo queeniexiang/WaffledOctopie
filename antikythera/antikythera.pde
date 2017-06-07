@@ -256,8 +256,10 @@ boolean isDead() { //checks if the player is touching any enemies at all
 }
 
 void drawUpgrades() {
-  Upgrades x;
-  for (int i = 0; i < UpgradesDisplayer.size(); i++) {
+  UpgradeSlowDown x = new UpgradeSlowDown();
+  
+  x.drawUpgrades(); 
+  /* for (int i = 0; i < UpgradesDisplayer.size(); i++) {
     x = UpgradesDisplayer.get(i); 
     x.drawUpgrades(); 
     if (player.touchingUpgrades(x)) {
@@ -265,6 +267,8 @@ void drawUpgrades() {
       UpgradesDisplayer.remove(i);
     }
   }
+   */ 
+  
 }
 
 //debugging
