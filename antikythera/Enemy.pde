@@ -29,6 +29,18 @@ class Enemy extends Character {
     super.radius = radius;
   }
 
+  public void drawCharacter() {
+    if (isFlickr())
+      fill(100); //enemy is not active/detectable at this point
+    else 
+      fill(myColor);
+    noStroke();
+    ellipse(posX, posY, size, size);
+    updateCoordinates(3);
+    stroke(10); //resets stroke
+    fill(255); //resets fill color to white
+  }
+
  //determines whether the enemy is being previewed or has actually spawned and can kill player
   public boolean isFlickr() {
     if (second()%60 - bornTime <= 2 && shouldFlickr) {

@@ -48,7 +48,7 @@ public class UpgradeDoublePoints extends Upgrades {
   }
 
   public boolean stillWorking() {
-    if (duration <= 10)
+    if (duration <= 5)
       return true;
     else 
     return false;

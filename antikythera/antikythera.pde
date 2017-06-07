@@ -319,10 +319,12 @@ void drawInstructions() {
   background(0);
   fill(255);
   textSize(40);
-  text("Instructions", width/2 - 75, height/2 - 200);
-  textSize(20);
-  text("Press the spacebar to switch sides and avoid enemies", width/2 - 100, height/2 - 150);
-  text("Press P to pause game and buy an upgrade if you have enough points", width/2 - 200, height/2);
-  text("You can only pause after getting at least 500 points", width/2 - 200, height/2 + 100);
-  text("press spacebar to start game!", width/2 - 50, height/2 + 150);
+  text("Traverse the circle avoiding the enemies. You can pop in or out of the circle's edge by", 50, 100);
+  text("pressing the spacebar. Collect upgrades to help your endeavor. There are three different", 50, 150);
+  text("upgrades.The one symbolized by a 2 doubles the earning points for 5 seconds. The one ", 50, 200);
+  text("symbolized by a 't' slows down the time. A side effect is it slows down points earning", 50, 250);
+  text("proportionally. The upgrade with a 3 represents immunity and will make the player immune", 50, 300);
+  text("to all enemies for 4 seconds. You can also buy upgrades by accessing the pause menu in game", 50, 350);
+  text("by pressing p. The pause menu can only be accessed if you have greater than 300 points. The" , 50, 400);
+  text("currency is your earned points.",50, 450);
 }

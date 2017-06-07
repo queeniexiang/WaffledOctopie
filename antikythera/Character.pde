@@ -29,13 +29,13 @@ class Character {
     fill(myColor); 
     noStroke();
     ellipse(posX, posY, size, size);
-    updateCoordinates();
+    updateCoordinates(2);
     stroke(10); //resets stroke
     fill(0); //default color of black
   }
 
-  public void updateCoordinates() {
-    angle = (angle + 2) % 360; //changing 2 will change the speed in which the character moves around the circle 
+  public void updateCoordinates(int dx) {
+    angle = (angle + dx) % 360; //changing 2 will change the speed in which the character moves around the circle 
     posX = width/2 + radius * cos(radians(angle));  //width/2 centers the x cor of character
     posY = height/2 + radius * sin(radians(angle)); //height/2 centers the y cor of character
   }

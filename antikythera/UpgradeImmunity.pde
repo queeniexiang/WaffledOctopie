@@ -2,7 +2,7 @@ public class UpgradeImmunity extends Upgrades {
 
   //vars cost, size, radius, duration, posX, posY, angle need to be used
   public UpgradeImmunity() {
-    cost = 300; 
+    cost = 700; 
     duration = 0; 
     angle = (int) random(0, 360);
     size = 40; 
