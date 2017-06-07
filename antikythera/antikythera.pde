@@ -7,24 +7,21 @@ LLStack upgradesStorage;
 LLStack Upgrades; 
 int state, previousState; 
 boolean useUpgrades;
-public int currentScore;
-int circleSize, highScore, difficulty, difficulty2; //difficulty is a var for time in sec and difficulty2 is a var for time in millisec
+int circleSize, currentScore, highScore, difficulty, difficulty2; //difficulty is a var for time in sec and difficulty2 is a var for time in millisec
 
 
 void setup() {
   background(0); 
   fullScreen();
   state = 0;
-  //size(600, 600);
   circleSize = 15;
   state = previousState = 0; 
   useUpgrades = false; 
-  //currentScore = highScore = 0; 
+  currentScore = highScore = 0; 
   player = new Player();
   enemyContainer = new PriorityQueue();
   UpgradesDisplayer = new ArrayList<Upgrades>();
   upgradesStorage = new LLStack();
-  //upgradesStorage.push(new UpgradeSlowDown()); 
   Upgrades = new LLStack(); 
   difficulty = 3; 
   difficulty2 = 55;
@@ -32,19 +29,19 @@ void setup() {
 
 void draw() {
   switch (state) {
-  case 0:
+  case 0: //state of very beginning of game
     drawIntroMenu(); 
     break; 
-  case 1:
+  case 1: //state of playing game
     playGame();
     break;
   case 2: //paused menu
     pauseMenu();
     break;
-  case 3: 
+  case 3: //state of dead
     resetGame();
     break;
-  case 4:
+  case 4: //state uof instructions
     drawInstructions(); 
     break;
   }
@@ -54,31 +51,43 @@ void draw() {
 void keyPressed() {
   if (key == ' ') { 
     if (state == 1)
-      player.switchSides();
-    else {
+      player.switchSides();  
+    else if (state == 3) { //dead state
       currentScore = 0;
       state = 1;
     }
+    else 
+      state = 1;
   }
   if (key == 'p') {
-    if (currentScore >= 300) {
-      if (state == 2)
-        state = 1;
-      else 
-      state = 2;
-    }
     if (state == 2) {
-      Upgrades x;
-      if (key == 'q') { 
-        x = new UpgradeDoublePoints();
-        upgradesStorage.push(x);
-        currentScore -= x.getCost();
-      } else if (key == 'w') {
-        x = new UpgradeSlowDown();
+      state = 1;
+    }
+    if (currentScore >= 300) 
+      state = 2;
+  }
+  if (state == 2) {
+    Upgrades x;
+    if (key == 'q') { 
+      x = new UpgradeDoublePoints();
+      if (currentScore >= x.getCost()) {
         upgradesStorage.push(x);
         currentScore -= x.getCost();
       }
-      //if (key == 'e')
+    } 
+    if (key == 'w') {
+      x = new UpgradeSlowDown();
+      if (currentScore >= x.getCost()) {
+        upgradesStorage.push(x);
+        currentScore -= x.getCost();
+      }
+    }
+    if (key == 'e') {      
+      x = new UpgradeImmunity();
+      if (currentScore >= x.getCost()) {
+        upgradesStorage.push(x);
+        currentScore -= x.getCost();
+      }
     }
   }
   if (key == '1') {
@@ -204,7 +213,7 @@ void spawnUpgrades() {
     else if (x < 50)
       adder = new UpgradeDoublePoints();
     else 
-      adder = new UpgradeImmunity(); 
+    adder = new UpgradeImmunity(); 
     UpgradesDisplayer.add(adder);
   }
 }
@@ -260,7 +269,7 @@ void drawUpgradeMenu() {
   fill(255);
   textSize(25);
   text("Choose an upgrade for a certain amount of earned points or press P to return to game", width/6 - 50, height/2 - 100);
-  text("Current Score: " + currentScore, width/6 - 50, height/2 - 100);
+  text("Current Score: " + currentScore, width/6 - 50, height/2 - 50);
   //double points
   fill(255);
   rect(width/8, height/2, 250, 210);
@@ -288,16 +297,14 @@ void drawUpgradeMenu() {
   //survive three hits
   fill(255);
   rect(5*(width/8) + 55, height/2, 250, 200);
-  textSize(27);
-  fill(0);
-  text("Temporary", 5*(width/8) + 110, height/2 + 30);
-  text("Invincibility", 5*(width/8) + 105, height/2 + 60);
   textSize(30);
-  text("-700 pts", 5*(width/8) + 120, height/2 + 100);
-  textSize(20);
   fill(0);
-  text("survive three hits", 5*(width/8) + 90, height/2 + 155);
-  text("from an enemy", 5*(width/8) + 100, height/2 + 180);
+  text("Immunity", 5*(width/8) + 110, height/2 + 30);
+  text("-700 pts", 5*(width/8) + 120, height/2 + 100);  
+  textSize(20);
+  text("Immune to enemies for 4 seconds", 5*(width/8) + 105, height/2 + 160);
+  text("Buy: press e", 5*(width/8) + 120, height/2 + 185); 
+  fill(0);
 }
 
 //draws start menu
@@ -325,6 +332,6 @@ void drawInstructions() {
   text("symbolized by a 't' slows down the time. A side effect is it slows down points earning", 50, 250);
   text("proportionally. The upgrade with a 3 represents immunity and will make the player immune", 50, 300);
   text("to all enemies for 4 seconds. You can also buy upgrades by accessing the pause menu in game", 50, 350);
-  text("by pressing p. The pause menu can only be accessed if you have greater than 300 points. The" , 50, 400);
-  text("currency is your earned points.",50, 450);
+  text("by pressing p. The pause menu can only be accessed if you have greater than 300 points. The", 50, 400);
+  text("currency is your earned points.", 50, 450);
 }

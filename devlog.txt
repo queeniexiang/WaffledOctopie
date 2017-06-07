@@ -92,7 +92,7 @@ Fabiola:
 
 2017-06-02
 __________________________________________
-Fabiola: 
+Fabiola:
 1. Worked on implementing pause menu in driver file.
 
 Terry:
@@ -111,9 +111,20 @@ Fabiola:
 2017-06-05
 _________________________________________
 Fabiola:
-1. Updated devlog and readme 
+1. Updated devlog and readme
 2. Worked on new methods drawIntroMenu() and drawInstructions() to make gameplay more clear and organized
 
-Terry:
-1. worked on stuff
+2017-06-06
+_________________________________________
+Queenie:
+1. Added upgrades DoublePoints and Slow Down time classes
+2. wrote upgrades abstract class
+3. wrote upgrades methods for drawing and using each upgrade
 
+Terry:
+1. Improved double points and slow down classes
+2. Wrote class for immunity upgrade
+3. Simplified code to switch statements
+4. Improved game displayed instructions
+5. Wrote method that would display the next upgrade available
+6. updated UML and flow diagram
