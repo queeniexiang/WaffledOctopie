@@ -4,7 +4,7 @@ PriorityQueue enemyContainer;
 ArrayList<Upgrades> UpgradesDisplayer;
 LLStack upgradesStorage; 
 LLStack Upgrades; 
-int state; 
+int state, previousState; 
 boolean useUpgrades;
 public int currentScore;
 int circleSize, highScore, difficulty, difficulty2; //difficulty is a var for time in sec and difficulty2 is a var for time in millisec
@@ -16,7 +16,7 @@ void setup() {
   state = 0;
   //size(600, 600);
   circleSize = 15;
-  state = 0; 
+  state = previousState = 0; 
   useUpgrades = false; 
   //currentScore = highScore = 0; 
   player = new Player();
@@ -44,6 +44,9 @@ void draw() {
   case 3: 
     resetGame();
     break;
+  case 4:
+    drawInstructions(); 
+    break;
   }
 }
 
@@ -62,19 +65,21 @@ void keyPressed() {
       else 
       state = 2;
     }
-    //paused = !paused;
-    //if (paused) {
+    //if (state == 2) {
     //  if (key == 'q')
     //  if (key == 'w')
     //  if (key == 'e')
     //}
   }
-
-  //if (introMenu) {
-
-  //}
+  if (key == '1') {
+    if (state == 4)
+      state = previousState; 
+    else {
+      previousState = state;
+      state = 4;
+    }
+  }
   if (key == 's') 
-    //introMenu = false;
     state = 1;
   if (key == 'z' && !upgradesStorage.isEmpty())
     useUpgrades = true;
@@ -101,7 +106,6 @@ void playGame() {
     useUpgrades();
   cleanEnemies();
   stroke(255);
-  //line(enemy1.getPosX(), enemy1.getPosY(), player.getPosX(), player.getPosY());
   stroke(0);
 }
 
@@ -198,7 +202,7 @@ void drawUpgrades() {
 //debugging
 void addUpgrades() { 
   Upgrades adder = new UpgradeDoublePoints() ; 
-  upgradesStorage.push(adder);
+  UpgradesDisplayer.add(adder);
 }
 
 void drawStorageUpgrade() {
@@ -281,21 +285,15 @@ void drawUpgradeContainer() {
 //draws start menu
 void drawIntroMenu() {
   background(0);
-  fill(255);
+  fill(0,100,255);
   textSize(60);
   text("Antikythera", width/2 - 200, height/2 - 200);
-  //play button
+  //play
   fill(255);
-  rect(width/2 - 160, height/2, 250, 100);
-  fill(0);
-  textSize(40);
-  text("Play", width/2 - 80, height/2 + 60);
-  //instructions button
-  fill(255);
-  rect(width/2 - 160, height/2 + 200, 250, 100);
-  fill(0);
-  textSize(40);
-  text("Instructions", width/2 - 145, height/2 + 260);
+  textSize(30);
+  text("Press s to play", width/2 - 200, height/2 - 40);
+  //instructions
+  text("Press 1 for instructions", width/2 - 200, height/2 + 40);
 }
 
 //draws instructions for gameplay
