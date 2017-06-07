@@ -307,4 +307,125 @@ void drawInstructions() {
   text("Press P to pause game and buy an upgrade if you have enough points", width/2 - 200, height/2);
   text("You can only pause after getting at least 500 points", width/2 - 200, height/2 + 100);
   text("press spacebar to start game!", width/2 - 50, height/2 + 150);
+<<<<<<< HEAD
+}
+
+//switches character's edge upon hitting space
+void keyPressed() {
+  if (key == ' ') { 
+    if (continueGame)
+      player.switchSides();
+    else {
+      continueGame = true;
+    }
+  }
+  if (key == 'p') {
+    if (currentScore >= 300)
+      paused = !paused;
+    //if (paused) {
+    //  if (key == 'q')
+    //  if (key == 'w')
+    //  if (key == 'e')
+    //}
+  }
+
+  //if (introMenu) {
+
+  //}
+  if (key == 's') 
+    introMenu = false;
+  if (key == 'z' && !upgradesStorage.isEmpty())
+    useUpgrades = true;
+}
+
+//determines difficulty of game based on currentScore
+void determineDifficulty() {
+  if (currentScore == 400) {
+    difficulty2 = 40;
+  }
+  if (currentScore == 600) {
+    difficulty = 2;
+  }
+  if (currentScore == 2000) {
+    difficulty2 = 30;
+  }
+  if (currentScore> 4000 && currentScore%1000 == 0 && difficulty2 != 0) {
+    if (currentScore == 4000)
+      difficulty = 1;
+    difficulty2 -= 1;
+    System.out.println(difficulty2);
+  }
+}
+
+//every 10 seconds add an enemy . The new enemy is decided randomly
+void addEnemy() {
+  if (second()%difficulty == 0 && frameCount%difficulty2 == 0) {  //checks to see if x seconds passed and that if it is 1 frame within the 60 fps
+    float dec = random(100);
+    Enemy adder; 
+    if (dec > 50)
+      adder = new EnemyOne(); 
+    else 
+    adder = new Enemy(); 
+    enemyContainer.add(adder);
+  }
+}
+
+void drawEnemies() { //draws all enemies in the priorityQueue
+  for (int i = 0; i < enemyContainer.size(); i++) {
+    enemyContainer.get(i).drawCharacter();
+  }
+}
+
+boolean isDead() { //checks if the player is touching any enemies at all
+  for (int i = 0; i < enemyContainer.size(); i++) {
+    if (player.touching(enemyContainer.get(i)))
+      return true;
+  }
+  return false;
+}
+
+void drawUpgrades() {
+  UpgradeSlowDown x = new UpgradeSlowDown();
+  
+  x.drawUpgrades(); 
+  /* for (int i = 0; i < UpgradesDisplayer.size(); i++) {
+    x = UpgradesDisplayer.get(i); 
+    x.drawUpgrades(); 
+    if (player.touchingUpgrades(x)) {
+      upgradesStorage.push(x);
+      UpgradesDisplayer.remove(i);
+    }
+  }
+   */ 
+  
+}
+
+//debugging
+void addUpgrades() { 
+  Upgrades adder = new UpgradeDoublePoints() ; 
+  upgradesStorage.push(adder);
+}
+
+void drawStorageUpgrade() {
+  upgradesStorage.peek().drawUpgrades();
+}
+
+void useUpgrades() {
+  if (upgradesStorage.isEmpty())
+    return;
+  if (upgradesStorage.peek().stillWorking()) {
+    upgradesStorage.peek().useUpgrade();
+  } else {
+    upgradesStorage.pop();
+    useUpgrades = false;
+  }
+}
+
+void cleanEnemies() {
+  if (enemyContainer.isEmpty())
+    return; 
+  if (enemyContainer.pop().isDead())
+    enemyContainer.remove();
+=======
+>>>>>>> 434d7ce1bc47d7d7a78232dd2b3785f878c12152
 }
